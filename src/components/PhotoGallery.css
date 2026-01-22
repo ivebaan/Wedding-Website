@@ -1,0 +1,134 @@
+.photo-gallery {
+  padding: 6rem 0;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+.photo-gallery .section-title {
+  font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
+  font-size: 4.5rem;
+  color: #8B9D83;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--dusty-rose);
+  margin: -2rem 0 3rem 0;
+  font-style: italic;
+}
+
+.gallery-scroll-container {
+  overflow-x: hidden;
+  margin-top: 3rem;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.gallery-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-scroll-container:active {
+  cursor: grabbing;
+}
+
+.gallery-grid {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  padding: 0 2rem;
+}
+
+.gallery-item {
+  flex-shrink: 0;
+  width: 450px;
+  position: relative;
+}
+
+.gallery-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(107, 138, 163, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  aspect-ratio: 3/4;
+  background: var(--sage-green-light);
+}
+
+.gallery-image-wrapper:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 50px rgba(107, 138, 163, 0.25);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0.95);
+}
+
+.gallery-image-wrapper:hover img {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(107, 138, 163, 0.95), transparent);
+  padding: 2.5rem 1.5rem 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-image-wrapper:hover .gallery-overlay {
+  transform: translateY(0);
+}
+
+.photo-caption {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-family: 'Playfair Display', serif;
+}
+
+.gallery-hint {
+  text-align: center;
+  margin-top: 3rem;
+  color: var(--sage-green);
+  font-size: 0.95rem;
+  font-style: italic;
+  opacity: 0.7;
+  animation: fadeInUp 1s ease;
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    width: 300px;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .gallery-hint {
+    font-size: 0.85rem;
+  }
+}
