@@ -294,8 +294,8 @@ function App() {
           groom={weddingData.couple.groom}
           date={weddingData.date}
           backgroundImage={weddingData.backgroundImage}
+          weddingDateTime={weddingData.weddingDateTime}
         />
-        <Countdown targetDate={weddingData.weddingDateTime} />
       </div>
 
       {/* Our Story Section */}

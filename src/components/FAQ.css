@@ -1,10 +1,10 @@
 .faq {
-  padding: 4rem 2rem;
-  background: white;
+  padding: 8rem 2rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8faf9 100%);
 }
 .faq .section-title {
   font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
-  font-size: 4.5rem;
+  font-size: 5rem;
   color: #8B9D83;
   text-align: center;
   margin-bottom: 1rem;

@@ -1,12 +1,12 @@
 .photo-gallery {
-  padding: 6rem 0;
-  background: #fafafa;
+  padding: 8rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f4f7 100%);
   overflow: hidden;
 }
 
 .photo-gallery .section-title {
   font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
-  font-size: 4.5rem;
+  font-size: 5rem;
   color: #8B9D83;
   text-align: center;
   margin-bottom: 1rem;
