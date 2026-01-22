@@ -78,8 +78,9 @@
 }
 
 .event-info h3 {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
   font-size: 2.5rem;
+  font-weight: 400;
   color: #6B8FA3;
   margin-bottom: 2rem;
   text-align: center;

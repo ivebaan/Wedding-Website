@@ -142,8 +142,9 @@ body {
 }
 
 .hero-title {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
   font-size: 6rem;
+  font-weight: 400;
   color: var(--olive-green);
   margin-bottom: 1rem;
   opacity: 0;
@@ -507,8 +508,9 @@ body {
 }
 
 .dress-code-subtitle {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
   font-size: 3rem;
+  font-weight: 400;
   color: var(--olive-green);
   margin-bottom: 1rem;
   text-shadow: 0 2px 4px rgba(122, 139, 111, 0.1);
@@ -758,8 +760,9 @@ body {
 }
 
 .footer-names {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
   font-size: 3rem;
+  font-weight: 400;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
