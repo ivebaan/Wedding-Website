@@ -1,52 +1,107 @@
-import React, { useEffect, useRef } from 'react';
-import './PhotoGallery.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./PhotoGallery.css";
 
 const PhotoGallery = ({ title, photos }) => {
-  const galleryRef = useRef(null);
-  const scrollSpeed = 0.5;
+  const scrollRef = useRef(null);
   const animationRef = useRef(null);
-  const isPausedRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
-    const gallery = galleryRef.current;
-    if (!gallery) return;
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
 
     let scrollPosition = 0;
+    const scrollSpeed = 1; // pixels per frame
 
     const autoScroll = () => {
-      if (!isPausedRef.current) {
-        const maxScroll = gallery.scrollWidth / 2;
-        
+      // Only auto-scroll when not dragging
+      if (!isDraggingRef.current) {
         scrollPosition += scrollSpeed;
-        
-        if (scrollPosition >= maxScroll) {
+
+        // When we've scrolled past the first set of images, reset to beginning
+        if (scrollPosition >= scrollContainer.scrollWidth / 2) {
           scrollPosition = 0;
         }
-        
-        gallery.scrollLeft = scrollPosition;
+
+        scrollContainer.scrollLeft = scrollPosition;
+      } else {
+        // Update scroll position when dragging to maintain sync
+        scrollPosition = scrollContainer.scrollLeft;
       }
+
       animationRef.current = requestAnimationFrame(autoScroll);
     };
 
     animationRef.current = requestAnimationFrame(autoScroll);
 
-    const handleMouseEnter = () => {
-      isPausedRef.current = true;
+    // Mouse drag handlers
+    const handleMouseDown = (e) => {
+      isDraggingRef.current = true;
+      setIsDragging(true);
+      startXRef.current = e.pageX - scrollContainer.offsetLeft;
+      scrollLeftRef.current = scrollContainer.scrollLeft;
+      scrollContainer.style.cursor = "grabbing";
+      scrollContainer.style.userSelect = "none";
     };
 
-    const handleMouseLeave = () => {
-      isPausedRef.current = false;
+    const handleMouseMove = (e) => {
+      if (!isDraggingRef.current) return;
+      e.preventDefault();
+      const x = e.pageX - scrollContainer.offsetLeft;
+      const walk = (x - startXRef.current) * 2; // Multiply for faster scroll
+      scrollContainer.scrollLeft = scrollLeftRef.current - walk;
     };
 
-    gallery.addEventListener('mouseenter', handleMouseEnter);
-    gallery.addEventListener('mouseleave', handleMouseLeave);
+    const handleMouseUpOrLeave = () => {
+      isDraggingRef.current = false;
+      setIsDragging(false);
+      scrollContainer.style.cursor = "grab";
+      scrollContainer.style.userSelect = "auto";
+    };
+
+    // Touch drag handlers for mobile
+    const handleTouchStart = (e) => {
+      isDraggingRef.current = true;
+      setIsDragging(true);
+      startXRef.current = e.touches[0].pageX - scrollContainer.offsetLeft;
+      scrollLeftRef.current = scrollContainer.scrollLeft;
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isDraggingRef.current) return;
+      const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+      const walk = (x - startXRef.current) * 2;
+      scrollContainer.scrollLeft = scrollLeftRef.current - walk;
+    };
+
+    const handleTouchEnd = () => {
+      isDraggingRef.current = false;
+      setIsDragging(false);
+    };
+
+    // Add event listeners
+    scrollContainer.addEventListener("mousedown", handleMouseDown);
+    scrollContainer.addEventListener("mousemove", handleMouseMove);
+    scrollContainer.addEventListener("mouseup", handleMouseUpOrLeave);
+    scrollContainer.addEventListener("mouseleave", handleMouseUpOrLeave);
+    scrollContainer.addEventListener("touchstart", handleTouchStart);
+    scrollContainer.addEventListener("touchmove", handleTouchMove);
+    scrollContainer.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      gallery.removeEventListener('mouseenter', handleMouseEnter);
-      gallery.removeEventListener('mouseleave', handleMouseLeave);
+      scrollContainer.removeEventListener("mousedown", handleMouseDown);
+      scrollContainer.removeEventListener("mousemove", handleMouseMove);
+      scrollContainer.removeEventListener("mouseup", handleMouseUpOrLeave);
+      scrollContainer.removeEventListener("mouseleave", handleMouseUpOrLeave);
+      scrollContainer.removeEventListener("touchstart", handleTouchStart);
+      scrollContainer.removeEventListener("touchmove", handleTouchMove);
+      scrollContainer.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
@@ -54,22 +109,30 @@ const PhotoGallery = ({ title, photos }) => {
     <section className="photo-gallery" id="gallery">
       <h2 className="section-title">{title}</h2>
       <p className="section-subtitle">Our journey in pictures</p>
-      
-      <div className="gallery-scroll-container" ref={galleryRef}>
-        <div className="gallery-grid">
+
+      <div
+        className={`gallery-scroll-container ${isDragging ? "dragging" : ""}`}
+        ref={scrollRef}
+      >
+        <div className="gallery-track">
+          {/* Duplicate photos for seamless loop */}
           {photos.concat(photos).map((photo, index) => (
-            <div key={index} className="gallery-item">
+            <div key={index} className="gallery-slide">
               <div className="gallery-image-wrapper">
-                <img src={photo.url} alt={photo.caption || `Photo ${index + 1}`} />
-                <div className="gallery-overlay">
-                  {photo.caption && <p className="photo-caption">{photo.caption}</p>}
-                </div>
+                <img
+                  src={photo.url}
+                  alt={photo.caption || `Photo ${index + 1}`}
+                  draggable="false"
+                />
               </div>
             </div>
           ))}
         </div>
       </div>
-      <p className="gallery-hint">💡 Hover to pause • Scroll automatically</p>
+
+      <p className="gallery-hint">
+        ✨ Drag to control • Auto-scrolling gallery
+      </p>
     </section>
   );
 };
