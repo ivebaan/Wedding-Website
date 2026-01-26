@@ -19,6 +19,10 @@ import wed4 from "../img/wed4.jpg";
 import wed5 from "../img/wed5.jpg";
 import wed6 from "../img/wed6.jpg";
 import dress from "../img/dress.png";
+import resto from "../img/resto.jpg";
+import resto1 from "../img/resto1.jpg";
+import resto2 from "../img/resto2.jpg";
+
 
 
 function App() {
@@ -72,7 +76,7 @@ function App() {
       "https://images.unsplash.com/photo-1519741497674-611481863552?w=1600",
 
     story:
-      "Our love story began in the most unexpected way, and every moment since has been a beautiful adventure. From our first meeting to this special day, we've grown together, supported each other, and built a foundation of love, trust, and friendship. We're excited to celebrate this next chapter with all of you who have been part of our journey.",
+      "What began as simple conversations turned into a love we never expected but always needed. What we first thought was just admiration slowly grew into something deeper — a love that felt safe, steady, and like home. Through every season, we chose each other, learned together, and grew side by side. Along the way, our love gave us our greatest blessing — our son, who made our world brighter and our bond even stronger.At this beautiful chapter of our story, we celebrate not just where we started, but how far love has carried us — into a lifetime we can’t wait to share.",
 
     entourage: {
       image:
@@ -138,13 +142,16 @@ function App() {
         venue: "Kalipay Restaurant",
         address:
           "Kalipay Restaurant, Banawa, Cebu City, Philippines 6000",
-        date: "Sunday, February 23, 2026",
-        time: "0 PM onwards",
+        date: "Monday, February 23, 2026",
+        time: "06:00 PM - 09:00 PM",
         mapLink: "https://maps.google.com/?q=Kalipay+Restaurant+Banawa+Cebu+City",
         qrCode:
           "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Chateau+de+Busay",
-        image:
-          "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800",
+        image: [
+          resto,
+          resto1,
+          resto2
+        ],
       },
     ],
 
@@ -335,6 +342,11 @@ function App() {
               Home
             </a>
           </li>
+           <li>
+            <a href="#our-story" className={activeSection === "our-story" ? "active" : ""} onClick={(e) => scrollToSection(e, "our-story")}>
+              Our Story
+            </a>
+          </li>
           <li>
             <a href="#details" className={activeSection === "details" ? "active" : ""} onClick={(e) => scrollToSection(e, "details")}>
               Details
@@ -343,6 +355,16 @@ function App() {
           <li>
             <a href="#dress-code" className={activeSection === "dress-code" ? "active" : ""} onClick={(e) => scrollToSection(e, "dress-code")}>
               Dress Code
+            </a>
+          </li>
+          <li>
+            <a href="#faq" className={activeSection === "faq" ? "active" : ""} onClick={(e) => scrollToSection(e, "faq")}>
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a href="#rsvp" className={activeSection === "rsvp" ? "active" : ""} onClick={(e) => scrollToSection(e, "rsvp")}>
+              RSVP
             </a>
           </li>
           <li>
