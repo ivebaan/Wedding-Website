@@ -1,7 +1,12 @@
 .dress-code {
-  padding: 4rem 2rem;
+  padding: 2rem 2rem 4rem;
   background: #f8f9fa;
   text-align: center;
+}
+
+.dress-code .section-title {
+  margin-top: 4rem;
+  font-family: 'Edwardian Script ITC', 'Tangerine', 'Allura', cursive;
 }
 
 .dress-code-subtitle {

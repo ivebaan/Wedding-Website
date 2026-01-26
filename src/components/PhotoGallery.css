@@ -2,6 +2,9 @@
   padding: 8rem 0;
   background: linear-gradient(180deg, #ffffff 0%, #f0f4f7 100%);
   overflow: hidden;
+  min-height: 100vh;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 .photo-gallery .section-title {
@@ -168,7 +171,7 @@
     width: 50px;
   }
 }
-}
+
 
 @media (max-width: 768px) {
 
