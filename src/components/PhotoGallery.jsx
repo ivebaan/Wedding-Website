@@ -130,9 +130,6 @@ const PhotoGallery = ({ title, photos }) => {
         </div>
       </div>
 
-      <p className="gallery-hint">
-        ✨ Drag to control • Auto-scrolling gallery
-      </p>
     </section>
   );
 };

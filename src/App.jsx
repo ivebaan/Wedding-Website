@@ -12,6 +12,13 @@ import GuestInfo from "./components/GuestInfo";
 import PhotoGallery from "./components/PhotoGallery";
 import Footer from "./components/Footer";
 import "./App.css";
+import wed1 from"../img/wed1.jpg";
+import wed2 from "../img/wed2.jpg";
+import wed3 from "../img/wed3.jpg";
+import wed4 from "../img/wed4.jpg";
+import wed5 from "../img/wed5.jpg";
+import wed6 from "../img/wed6.jpg";
+
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -139,12 +146,12 @@ function App() {
       },
       {
         name: "Wedding Reception",
-        venue: "Chateau de Busay Inn & Restaurant",
+        venue: "Kalipay Restaurant",
         address:
-          "Lower Busay Nivel Hills, Cebu Transcentral Hwy, Cebu City, 6000 Cebu",
+          "Kalipay Restaurant, Banawa, Cebu City, Philippines 6000",
         date: "Sunday, February 23, 2026",
-        time: "6:00 PM onwards",
-        mapLink: "https://maps.google.com/?q=Chateau+de+Busay",
+        time: "0 PM onwards",
+        mapLink: "https://maps.google.com/?q=Kalipay+Restaurant+Banawa+Cebu+City",
         qrCode:
           "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Chateau+de+Busay",
         image:
@@ -213,14 +220,14 @@ function App() {
 
     gifts: [
       {
-        icon: "💝",
+        icon: "",
         title: "Monetary Gifts",
         description:
           "Your generous gift will help us start our new life together.",
         details: [],
       },
       {
-        icon: "🏦",
+        icon: "",
         title: "Bank Transfer",
         description: "You may send your gift via bank transfer.",
         details: [
@@ -233,7 +240,7 @@ function App() {
 
     guestInfo: [
       {
-        icon: "🏨",
+        icon: "",
         title: "Accommodations",
         items: [
           {
@@ -253,7 +260,7 @@ function App() {
         ],
       },
       {
-        icon: "🚗",
+        icon: "",
         title: "Transportation",
         items: [
           {
@@ -271,47 +278,47 @@ function App() {
 
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&h=600&fit=crop",
+        url: wed2,
         caption: "Garden Romance",
       },
       {
-        url: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop",
+        url: wed1,
         caption: "Chapel Dreams",
       },
       {
-        url: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&h=600&fit=crop",
+        url: wed6,
         caption: "Evening Elegance",
       },
       {
-        url: "https://images.unsplash.com/photo-1543965126-41a9402e5c5c?w=800&h=600&fit=crop",
+        url: wed5,
         caption: "Intimate Moments",
       },
       {
-        url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=600&fit=crop",
+        url: wed4,
         caption: "Celebration Time",
       },
       {
-        url: "https://images.unsplash.com/photo-1594587656168-ffc4b01d1e3c?w=800&h=600&fit=crop",
+        url: wed3,
         caption: "Beautiful Journey",
       },
       {
-        url: "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=800&h=600&fit=crop",
+        url: wed2,
         caption: "Forever Together",
       },
       {
-        url: "https://images.unsplash.com/photo-1522673607269-f8a61c6edb7e?w=800&h=600&fit=crop",
+        url: wed1,
         caption: "Love Story",
       },
     ],
 
     contact: {
-      email: "kerjay.jennifer@wedding.com",
+      email: "jesming@gmail.com",
       phone: "+63 912 345 6789",
       whatsapp: "639123456789",
     },
 
     rsvp: {
-      deadline: "January 15, 2026",
+      deadline: "Februrary 23, 2026",
     },
   };
 
