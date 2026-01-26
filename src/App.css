@@ -608,14 +608,14 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem 3rem;
+  padding: 1.5rem 2rem;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 248, 245, 0.95) 100%);
-  border-radius: 24px;
+  border-radius: 20px;
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.08),
     inset 0 2px 0 rgba(255, 255, 255, 1),
     inset 0 -2px 0 rgba(139, 157, 131, 0.1);
-  min-width: 140px;
+  min-width: 100px;
   border: 2px solid rgba(139, 157, 131, 0.15);
   position: relative;
   overflow: hidden;
@@ -688,7 +688,7 @@ section {
 
 .countdown-value {
   font-family: "Playfair Display", serif;
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--sage-green), var(--light-sage), var(--dusty-rose));
   -webkit-background-clip: text;
@@ -707,14 +707,14 @@ section {
 }
 
 .countdown-label {
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   color: var(--text-light);
   text-transform: uppercase;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   position: relative;
-  padding-top: 0.8rem;
+  padding-top: 0.6rem;
 }
 
 .countdown-label::before {
