@@ -18,11 +18,13 @@ import wed3 from "../img/wed3.jpg";
 import wed4 from "../img/wed4.jpg";
 import wed5 from "../img/wed5.jpg";
 import wed6 from "../img/wed6.jpg";
+import dress from "../img/dress.png";
 
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -132,19 +134,6 @@ function App() {
 
     events: [
       {
-        name: "Wedding Ceremony",
-        venue: "Archdiocesan Shrine of St. Thérèse of the Child Jesus",
-        address: "Pasteur cor. Edison Sts., Lahug, Cebu City, Cebu",
-        date: "Sunday, February 23, 2026",
-        time: "01:00 PM",
-        mapLink:
-          "https://maps.google.com/?q=Archdiocesan+Shrine+of+St+Therese+Lahug",
-        qrCode:
-          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Archdiocesan+Shrine+of+St+Therese+Lahug",
-        image:
-          "https://images.unsplash.com/photo-1525772764200-be829a350797?w=800",
-      },
-      {
         name: "Wedding Reception",
         venue: "Kalipay Restaurant",
         address:
@@ -160,13 +149,13 @@ function App() {
     ],
 
     dressCode: {
-      title: "DRESS CODE",
+      title: "Dress Code",
       subtitle: "Semi-Formal Attire",
       description:
         "We would love to see you in your best and most comfortable SEMI-FORMAL ATTIRE that suits in our motif.",
       colors: ["#8B9D83", "#9CAF88", "#D4A5A5", "#E8B4B8"],
       image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800",
+        dress
     },
 
     faq: [
@@ -324,30 +313,10 @@ function App() {
 
   const weddingDate = new Date("2026-02-23T13:00:00");
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date();
-      const difference = weddingDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
     setShowMenu(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    setActiveSection(sectionId);
   };
 
   return (
@@ -362,52 +331,22 @@ function App() {
         </button>
         <ul className={`nav-menu ${showMenu ? "active" : ""}`}>
           <li>
-            <a href="#home" onClick={() => scrollToSection("home")}>
+            <a href="#home" className={activeSection === "home" ? "active" : ""} onClick={(e) => scrollToSection(e, "home")}>
               Home
             </a>
           </li>
           <li>
-            <a href="#our-story" onClick={() => scrollToSection("our-story")}>
-              Our Story
-            </a>
-          </li>
-          <li>
-            <a href="#entourage" onClick={() => scrollToSection("entourage")}>
-              Entourage
-            </a>
-          </li>
-          <li>
-            <a href="#details" onClick={() => scrollToSection("details")}>
+            <a href="#details" className={activeSection === "details" ? "active" : ""} onClick={(e) => scrollToSection(e, "details")}>
               Details
             </a>
           </li>
           <li>
-            <a href="#dress-code" onClick={() => scrollToSection("dress-code")}>
+            <a href="#dress-code" className={activeSection === "dress-code" ? "active" : ""} onClick={(e) => scrollToSection(e, "dress-code")}>
               Dress Code
             </a>
           </li>
           <li>
-            <a href="#faq" onClick={() => scrollToSection("faq")}>
-              FAQ
-            </a>
-          </li>
-          <li>
-            <a href="#rsvp" onClick={() => scrollToSection("rsvp")}>
-              RSVP
-            </a>
-          </li>
-          <li>
-            <a href="#gifts" onClick={() => scrollToSection("gifts")}>
-              Gifts
-            </a>
-          </li>
-          <li>
-            <a href="#guest-info" onClick={() => scrollToSection("guest-info")}>
-              Guest Info
-            </a>
-          </li>
-          <li>
-            <a href="#gallery" onClick={() => scrollToSection("gallery")}>
+            <a href="#gallery" className={activeSection === "gallery" ? "active" : ""} onClick={(e) => scrollToSection(e, "gallery")}>
               Gallery
             </a>
           </li>
@@ -415,81 +354,114 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <div id="home">
-        <Hero
-          bride={weddingData.couple.bride}
-          groom={weddingData.couple.groom}
-          date={weddingData.date}
-          backgroundImage={weddingData.backgroundImage}
-          weddingDateTime={weddingData.weddingDateTime}
-        />
-      </div>
+      {activeSection === "home" && (
+        <div id="home">
+          <Hero
+            bride={weddingData.couple.bride}
+            groom={weddingData.couple.groom}
+            date={weddingData.date}
+            backgroundImage={weddingData.backgroundImage}
+            weddingDateTime={weddingData.weddingDateTime}
+          />
+        </div>
+      )}
 
       {/* Our Story Section */}
-      <OurStory
-        title="Our Story"
-        story={weddingData.story}
-        image={weddingData.entourage.image}
-      />
+      {activeSection === "our-story" && (
+        <div className="section-wrapper">
+          <OurStory
+            title="Our Story"
+            story={weddingData.story}
+            image={weddingData.entourage.image}
+          />
+        </div>
+      )}
 
       {/* Entourage Section */}
-      <Entourage
-        title="Our Entourage"
-        image={weddingData.entourage.image}
-        sponsors={weddingData.entourage.sponsors}
-        bestMan={weddingData.entourage.bestMan}
-        groomsmen={weddingData.entourage.groomsmen}
-        maidsOfHonor={weddingData.entourage.maidsOfHonor}
-        bridesmaids={weddingData.entourage.bridesmaids}
-        secondarySponsors={weddingData.entourage.secondarySponsors}
-      />
+      {activeSection === "entourage" && (
+        <div className="section-wrapper">
+          <Entourage
+            title="Our Entourage"
+            image={weddingData.entourage.image}
+            sponsors={weddingData.entourage.sponsors}
+            bestMan={weddingData.entourage.bestMan}
+            groomsmen={weddingData.entourage.groomsmen}
+            maidsOfHonor={weddingData.entourage.maidsOfHonor}
+            bridesmaids={weddingData.entourage.bridesmaids}
+            secondarySponsors={weddingData.entourage.secondarySponsors}
+          />
+        </div>
+      )}
 
       {/* Event Details Section */}
-      <EventDetails title="When & Where" events={weddingData.events} />
+      {activeSection === "details" && (
+        <div className="section-wrapper">
+          <EventDetails title="When & Where" events={weddingData.events} />
+        </div>
+      )}
 
       {/* Dress Code Section */}
-      <DressCode
-        title={weddingData.dressCode.title}
-        subtitle={weddingData.dressCode.subtitle}
-        description={weddingData.dressCode.description}
-        colors={weddingData.dressCode.colors}
-        image={weddingData.dressCode.image}
-      />
+      {activeSection === "dress-code" && (
+        <div className="section-wrapper">
+          <DressCode
+            title={weddingData.dressCode.title}
+            subtitle={weddingData.dressCode.subtitle}
+            description={weddingData.dressCode.description}
+            colors={weddingData.dressCode.colors}
+            image={weddingData.dressCode.image}
+          />
+        </div>
+      )}
 
       {/* FAQ Section */}
-      <FAQ
-        title="Frequently Asked Questions"
-        subtitle="POPULAR QUESTIONS"
-        questions={weddingData.faq}
-      />
+      {activeSection === "faq" && (
+        <div className="section-wrapper">
+          <FAQ
+            title="Frequently Asked Questions"
+            subtitle="POPULAR QUESTIONS"
+            questions={weddingData.faq}
+          />
+        </div>
+      )}
 
       {/* RSVP Section */}
-      <RSVP
-        title="RSVP"
-        description="We can't wait to celebrate with you! Please let us know if you can make it."
-        contactInfo={weddingData.contact}
-        deadline={weddingData.rsvp.deadline}
-      />
+      {activeSection === "rsvp" && (
+        <div className="section-wrapper">
+          <RSVP
+            title="RSVP"
+            description="We can't wait to celebrate with you! Please let us know if you can make it."
+            contactInfo={weddingData.contact}
+            deadline={weddingData.rsvp.deadline}
+          />
+        </div>
+      )}
 
       {/* Gift Registry Section */}
-      <GiftRegistry
-        title="Gift Registry"
-        description="Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we would be grateful for contributions toward our future together."
-        options={weddingData.gifts}
-      />
+      {activeSection === "gifts" && (
+        <div className="section-wrapper">
+          <GiftRegistry
+            title="Gift Registry"
+            description="Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we would be grateful for contributions toward our future together."
+            options={weddingData.gifts}
+          />
+        </div>
+      )}
 
       {/* Guest Information Section */}
-      <GuestInfo title="Guest Information" sections={weddingData.guestInfo} />
+      {activeSection === "guest-info" && (
+        <div className="section-wrapper">
+          <GuestInfo title="Guest Information" sections={weddingData.guestInfo} />
+        </div>
+      )}
 
       {/* Photo Gallery Section */}
-      <PhotoGallery title="Our Memories" photos={weddingData.gallery} />
+      {activeSection === "gallery" && (
+        <div className="section-wrapper" id="gallery">
+          <PhotoGallery title="Our Memories" photos={weddingData.gallery} />
+        </div>
+      )}
 
-      {/* Footer */}
-      <Footer
-        couple={weddingData.couple}
-        date={weddingData.date}
-        contactInfo={weddingData.contact}
-      />
+      
     </div>
   );
 }

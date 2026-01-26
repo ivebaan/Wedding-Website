@@ -28,7 +28,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #B8C5D6 0%, #6B8AA3 100%);
+  background: linear-gradient(90deg, #B8C5D6 0%, #E8B4B8 100%);
   transform: scaleX(0);
   transition: transform 0.4s;
 }

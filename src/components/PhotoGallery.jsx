@@ -95,40 +95,46 @@ const PhotoGallery = ({ title, photos }) => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      scrollContainer.removeEventListener("mousedown", handleMouseDown);
-      scrollContainer.removeEventListener("mousemove", handleMouseMove);
-      scrollContainer.removeEventListener("mouseup", handleMouseUpOrLeave);
-      scrollContainer.removeEventListener("mouseleave", handleMouseUpOrLeave);
-      scrollContainer.removeEventListener("touchstart", handleTouchStart);
-      scrollContainer.removeEventListener("touchmove", handleTouchMove);
-      scrollContainer.removeEventListener("touchend", handleTouchEnd);
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("mousedown", handleMouseDown);
+        scrollContainer.removeEventListener("mousemove", handleMouseMove);
+        scrollContainer.removeEventListener("mouseup", handleMouseUpOrLeave);
+        scrollContainer.removeEventListener("mouseleave", handleMouseUpOrLeave);
+        scrollContainer.removeEventListener("touchstart", handleTouchStart);
+        scrollContainer.removeEventListener("touchmove", handleTouchMove);
+        scrollContainer.removeEventListener("touchend", handleTouchEnd);
+      }
     };
-  }, []);
+  }, [photos]); // Re-run when photos change
 
   return (
     <section className="photo-gallery" id="gallery">
       <h2 className="section-title">{title}</h2>
       <p className="section-subtitle">Our journey in pictures</p>
 
-      <div
-        className={`gallery-scroll-container ${isDragging ? "dragging" : ""}`}
-        ref={scrollRef}
-      >
-        <div className="gallery-track">
-          {/* Duplicate photos for seamless loop */}
-          {photos.concat(photos).map((photo, index) => (
-            <div key={index} className="gallery-slide">
-              <div className="gallery-image-wrapper">
-                <img
-                  src={photo.url}
-                  alt={photo.caption || `Photo ${index + 1}`}
-                  draggable="false"
-                />
+      {photos && photos.length > 0 ? (
+        <div
+          className={`gallery-scroll-container ${isDragging ? "dragging" : ""}`}
+          ref={scrollRef}
+        >
+          <div className="gallery-track">
+            {/* Duplicate photos for seamless loop */}
+            {photos.concat(photos).map((photo, index) => (
+              <div key={index} className="gallery-slide">
+                <div className="gallery-image-wrapper">
+                  <img
+                    src={photo.url}
+                    alt={photo.caption || `Photo ${index + 1}`}
+                    draggable="false"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <p style={{ textAlign: 'center', padding: '2rem' }}>No photos available</p>
+      )}
 
     </section>
   );
