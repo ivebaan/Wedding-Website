@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Hero from "./components/Hero";
 import Countdown from "./components/Countdown";
 import OurStory from "./components/OurStory";
-import Entourage from "./components/Entourage";
 import EventDetails from "./components/EventDetails";
 import DressCode from "./components/DressCode";
 import FAQ from "./components/FAQ";
@@ -352,22 +351,6 @@ function App() {
             title="Our Story"
             story={weddingData.story}
             image={[wed1, wed2, wed3, wed4, wed5]}
-          />
-        </div>
-      )}
-
-      {/* Entourage Section */}
-      {activeSection === "entourage" && (
-        <div className="section-wrapper">
-          <Entourage
-            title="Our Entourage"
-            image={weddingData.entourage.image}
-            sponsors={weddingData.entourage.sponsors}
-            bestMan={weddingData.entourage.bestMan}
-            groomsmen={weddingData.entourage.groomsmen}
-            maidsOfHonor={weddingData.entourage.maidsOfHonor}
-            bridesmaids={weddingData.entourage.bridesmaids}
-            secondarySponsors={weddingData.entourage.secondarySponsors}
           />
         </div>
       )}
