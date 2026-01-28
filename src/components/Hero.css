@@ -47,17 +47,16 @@
 }
 
 .hero-glass-card {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(30px) saturate(150%);
-  -webkit-backdrop-filter: blur(30px) saturate(150%);
-  border-radius: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  padding: 3rem 2.5rem 2.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 4rem 3rem 3.5rem;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.15) inset,
-    0 0 100px rgba(139, 157, 131, 0.1) inset;
-  max-width: 800px;
+    0 30px 80px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  max-width: 900px;
   margin: 0 auto;
   animation: fadeInScale 1.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -101,15 +100,18 @@
 
 .hero-subtitle {
   font-family: "Inter", sans-serif;
-  font-size: 0.85rem;
-  color: #E8B4B8;
-  font-weight: 600;
-  letter-spacing: 6px;
+  font-size: 1.1rem !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: 10px !important;
   text-transform: uppercase;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   opacity: 0;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-  text-shadow: 2px 2px 16px rgba(0, 0, 0, 0.3);
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(0, 0, 0, 0.3) !important;
   position: relative;
   z-index: 1;
 }
@@ -138,16 +140,19 @@
 
 .hero-date {
   font-family: "Playfair Display", serif;
-  font-size: 1.8rem;
-  color: rgba(255, 255, 255, 0.95);
+  font-size: 2.5rem !important;
+  color: #ffffff !important;
   font-style: italic;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   margin-bottom: 0;
   opacity: 0;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 1s forwards;
-  text-shadow: 2px 2px 16px rgba(0, 0, 0, 0.3);
-  letter-spacing: 3px;
-  font-weight: 500;
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(0, 0, 0, 0.3) !important;
+  letter-spacing: 5px !important;
+  font-weight: 600 !important;
   position: relative;
   z-index: 1;
 }
@@ -156,11 +161,12 @@
 .hero-countdown {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 3rem;
   flex-wrap: nowrap;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   opacity: 0;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards;
   position: relative;
@@ -168,72 +174,46 @@
 }
 
 .hero-countdown .countdown-item {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  padding: 1.2rem 1.5rem;
-  border-radius: 20px;
-  min-width: 90px;
-  flex: 1;
-  max-width: 110px;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  min-width: auto;
+  flex: 0;
   text-align: center;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: none;
   position: relative;
-  overflow: hidden;
-}
-
-.hero-countdown .countdown-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, rgba(139, 157, 131, 0.6), rgba(232, 180, 184, 0.6));
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  overflow: visible;
 }
 
 .hero-countdown .countdown-item:hover {
-  transform: translateY(-8px) scale(1.05);
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 
-    0 16px 48px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
-.hero-countdown .countdown-item:hover::before {
-  opacity: 1;
+  transform: translateY(-5px);
 }
 
 .hero-countdown .countdown-number {
   display: block;
   font-family: "Playfair Display", serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.9));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: #ffffff;
   line-height: 1;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  filter: drop-shadow(2px 2px 12px rgba(0, 0, 0, 0.3));
+  margin-bottom: 0.8rem;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  letter-spacing: -2px;
 }
 
 .hero-countdown .countdown-label {
   display: block;
   font-family: "Inter", sans-serif;
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
-  font-weight: 700;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  font-weight: 400;
 }
 
 @keyframes fadeInUp {
@@ -250,12 +230,12 @@
 @media (max-width: 768px) {
   .hero-glass-card {
     padding: 3rem 2rem;
-    border-radius: 20px;
+    border-radius: 30px;
   }
 
   .hero-subtitle {
-    font-size: 1.2rem;
-    letter-spacing: 3px;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
   }
 
   .hero-logo {
@@ -263,35 +243,35 @@
   }
 
   .hero-date {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
   }
 
   .hero-countdown {
-    gap: 1rem;
-  }
-
-  .hero-countdown .countdown-item {
-    min-width: 80px;
-    padding: 1rem 1.5rem;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
   }
 
   .hero-countdown .countdown-number {
-    font-size: 2rem;
+    font-size: 3.5rem;
   }
 
   .hero-countdown .countdown-label {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-glass-card {
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
+    border-radius: 25px;
   }
 
   .hero-subtitle {
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
   }
 
   .hero-logo {
@@ -299,23 +279,27 @@
   }
 
   .hero-date {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
   }
 
   .hero-countdown {
-    gap: 0.8rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    flex-wrap: wrap;
   }
 
   .hero-countdown .countdown-item {
-    min-width: 70px;
-    padding: 0.8rem 1rem;
+    flex: 0 0 calc(50% - 1.5rem);
   }
 
   .hero-countdown .countdown-number {
-    font-size: 1.5rem;
+    font-size: 3rem;
   }
 
   .hero-countdown .countdown-label {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
   }
 }
