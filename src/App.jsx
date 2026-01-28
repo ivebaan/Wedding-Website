@@ -12,12 +12,25 @@ import GuestInfo from "./components/GuestInfo";
 import PhotoGallery from "./components/PhotoGallery";
 import Footer from "./components/Footer";
 import "./App.css";
-import wed1 from"../img/wed1.jpg";
-import wed2 from "../img/wed2.jpg";
-import wed3 from "../img/wed3.jpg";
-import wed4 from "../img/wed4.jpg";
-import wed5 from "../img/wed5.jpg";
-import wed6 from "../img/wed6.jpg";
+import wed1 from"../img/wed1.jpeg";
+import wed2 from "../img/wed2.jpeg";
+import wed3 from "../img/wed3.jpeg";
+import wed4 from "../img/wed4.jpeg";
+import wed5 from "../img/wed5.jpeg";
+import wed6 from "../img/wed6.jpeg";
+import wed7 from "../img/wed7.jpeg";
+import wed8 from "../img/wed8.jpeg";
+import wed9 from "../img/wed9.jpeg";
+import wed11 from "../img/wed11.jpeg";
+import wed12 from "../img/wed12.jpeg";
+import wed10 from "../img/wed10.jpeg";
+import wed13 from "../img/wed10.jpeg";
+import wed14 from "../img/wed14.jpeg";
+import wed15 from "../img/wed15.jpeg";
+import wed16 from "../img/wed16.jpeg";
+import wed17 from "../img/wed17.jpeg";
+import wed18 from "../img/wed18.jpeg";
+import wed19 from "../img/wed19.jpeg";
 import dress from "../img/dress.png";
 import resto from "../img/resto.jpg";
 import resto1 from "../img/resto1.jpg";
@@ -72,8 +85,8 @@ function App() {
     },
     date: "23 February 2026",
     weddingDateTime: "2026-02-23T13:00:00",
-    backgroundImage:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?w=1600",
+    backgroundImage: wed2
+      ,
 
     story:
       "What began as simple conversations turned into a love we never expected but always needed. What we first thought was just admiration slowly grew into something deeper — a love that felt safe, steady, and like home. Through every season, we chose each other, learned together, and grew side by side. Along the way, our love gave us our greatest blessing — our son, who made our world brighter and our bond even stronger.At this beautiful chapter of our story, we celebrate not just where we started, but how far love has carried us — into a lifetime we can’t wait to share.",
@@ -159,7 +172,7 @@ function App() {
       title: "Dress Code",
       subtitle: "Semi-Formal Attire",
       description:
-        "We would love to see you in your best and most comfortable SEMI-FORMAL ATTIRE that suits in our motif.",
+        "We would love to see you in your best and most comfortable semi-formal attire that complements our color palette.",
       colors: ["#8B9D83", "#9CAF88", "#D4A5A5", "#E8B4B8"],
       image:
         dress
@@ -274,36 +287,80 @@ function App() {
 
     gallery: [
       {
-        url: wed2,
-        caption: "Garden Romance",
+        url: wed19,
+        caption: "JesandMing",
       },
       {
-        url: wed1,
-        caption: "Chapel Dreams",
+        url: wed18,
+        caption: "JesandMing",
+      },
+      {
+        url: wed17,
+        caption: "JesandMing",
+      },
+      {
+        url: wed16,
+        caption: "JesandMing",
+      },
+      {
+        url: wed15,
+        caption: "JesandMing",
+      },
+      {
+        url: wed14,
+        caption: "JesandMing",
+      },
+      {
+        url: wed13,
+        caption: "JesandMing",
+      },
+      {
+        url: wed12,
+        caption: "JesandMing",
+      },
+      {
+        url: wed11,
+        caption: "JesandMing",
+      },
+      {
+        url: wed10,
+        caption: "JesandMing",
+      },
+      {
+        url: wed9,
+        caption: "JesandMing",
+      },
+      {
+        url: wed8,
+        caption: "JesandMing",
+      },
+      {
+        url: wed7,
+        caption: "JesandMing",
       },
       {
         url: wed6,
-        caption: "Evening Elegance",
+        caption: "JesandMing",
       },
       {
         url: wed5,
-        caption: "Intimate Moments",
+        caption: "JesandMing",
       },
       {
         url: wed4,
-        caption: "Celebration Time",
+        caption: "JesandMing",
       },
       {
         url: wed3,
-        caption: "Beautiful Journey",
+        caption: "JesandMing",
       },
       {
         url: wed2,
-        caption: "Forever Together",
+        caption: "JesandMing",
       },
       {
         url: wed1,
-        caption: "Love Story",
+        caption: "JesandMing",
       },
     ],
 
@@ -394,7 +451,7 @@ function App() {
           <OurStory
             title="Our Story"
             story={weddingData.story}
-            image={weddingData.entourage.image}
+            image={[wed1, wed2, wed3, wed4, wed5]}
           />
         </div>
       )}
