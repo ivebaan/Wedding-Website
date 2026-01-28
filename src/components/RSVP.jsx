@@ -23,11 +23,11 @@ const RSVP = ({ title, description, contactInfo, deadline }) => {
                 <a href={`tel:${contactInfo.phone}`}>{contactInfo.phone}</a>
               </p>
             )}
-            {contactInfo.whatsapp && (
+            {contactInfo.messenger && (
               <p>
-                <strong>WhatsApp:</strong>{' '}
-                <a href={`https://wa.me/${contactInfo.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                  {contactInfo.whatsapp}
+                <strong>Messenger:</strong>{' '}
+                <a href={`https://m.me/${contactInfo.messenger}`} target="_blank" rel="noopener noreferrer">
+                  {contactInfo.messenger}
                 </a>
               </p>
             )}

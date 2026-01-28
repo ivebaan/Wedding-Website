@@ -110,7 +110,7 @@ const PhotoGallery = ({ title, photos }) => {
   return (
     <section className="photo-gallery" id="gallery">
       <h2 className="section-title">{title}</h2>
-      <p className="section-subtitle">Our journey in pictures</p>
+      <p className="section-subtitle">A collection of moments that tell our love story—captured in joy, laughter, and forever.</p>
 
       {photos && photos.length > 0 ? (
         <div
