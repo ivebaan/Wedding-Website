@@ -20,17 +20,26 @@ import wed9 from "../img/wed9.jpeg";
 import wed11 from "../img/wed11.jpeg";
 import wed12 from "../img/wed12.jpeg";
 import wed10 from "../img/wed10.jpeg";
-import wed13 from "../img/wed10.jpeg";
+import wed13 from "../img/wed13.jpeg";
 import wed14 from "../img/wed14.jpeg";
 import wed15 from "../img/wed15.jpeg";
 import wed16 from "../img/wed16.jpeg";
 import wed17 from "../img/wed17.jpeg";
 import wed18 from "../img/wed18.jpeg";
-import wed19 from "../img/wed19.jpeg";
 import dress from "../img/dress.png";
 import resto from "../img/resto.jpg";
 import resto1 from "../img/resto1.jpg";
 import resto2 from "../img/resto2.jpg";
+import prenup1 from "../img/prenup1.jpeg";
+import prenup2 from "../img/prenup2.jpeg";
+import prenup3 from "../img/prenup3.jpeg"; 
+import prenup4 from "../img/prenup4.jpeg";
+import prenup5 from "../img/prenup5.jpeg";
+import prenup6 from "../img/prenup6.jpeg";
+import prenup7 from "../img/prenup7.jpeg";
+import prenup8 from "../img/prenup8.jpeg";
+import main1 from "../img/main1.jpeg";
+import main2 from "../img/main2.jpeg";
 
 
 
@@ -163,32 +172,101 @@ function App() {
           "Due to limited capacity, we can only accommodate guests formally invited. Please check your invitation for the number of seats reserved under your name.",
       },
     ],
-
-    gifts: [
-      {
-        icon: "",
-        title: "Monetary Gifts",
-        description:
-          "Your generous gift will help us start our new life together.",
-        details: [],
-      },
-      {
-        icon: "",
-        title: "Bank Transfer",
-        description: "You may send your gift via bank transfer.",
-        details: [
-          { label: "Bank", value: "BDO" },
-          { label: "Account Name", value: "Kerjay Rodriguez" },
-          { label: "Account Number", value: "1234567890" },
-        ],
-      },
-    ],
-
     gallery: [
       {
-        url: wed19,
+        url: prenup2,
         caption: "JesandMing",
       },
+      
+      {
+        url: prenup1,
+        caption: "JesandMing",
+      },
+      {
+        url: main2,
+        caption: "JesandMing",
+      },
+      {
+        url: main1,
+        caption: "JesandMing",
+      },
+      
+      {
+        url: prenup3,
+        caption: "JesandMing",
+      },
+      {
+        url: prenup4,
+        caption: "JesandMing",
+      },
+      {
+        url: prenup5,
+        caption: "JesandMing",
+      },
+      {
+        url: prenup6,
+        caption: "JesandMing",
+      },
+      {
+        url: wed9,
+        caption: "JesandMing",
+      },
+      {
+        url: wed8,
+        caption: "JesandMing",
+      },
+       {
+        url: wed3,
+        caption: "JesandMing",
+      },
+      {
+        url: wed2,
+        caption: "JesandMing",
+      },
+      {
+        url: wed1,
+        caption: "JesandMing",
+      },
+      {
+        url: wed6,
+        caption: "JesandMing",
+      },
+      {
+        url: wed7,
+        caption: "JesandMing",
+      },
+      {
+        url: prenup8,
+        caption: "JesandMing",
+      },
+      {
+        url: wed14,
+        caption: "JesandMing",
+      },
+      {
+        url: wed12,
+        caption: "JesandMing",
+      },
+      {
+        url: wed11,
+        caption: "JesandMing",
+      },
+      {
+        url: wed10,
+        caption: "JesandMing",
+      },{
+        url: wed13,
+        caption: "JesandMing",
+      },
+      {
+        url: wed5,
+        caption: "JesandMing",
+      },
+      {
+        url: wed4,
+        caption: "JesandMing",
+      },
+     
       {
         url: wed18,
         caption: "JesandMing",
@@ -204,63 +282,7 @@ function App() {
       {
         url: wed15,
         caption: "JesandMing",
-      },
-      {
-        url: wed14,
-        caption: "JesandMing",
-      },
-      {
-        url: wed13,
-        caption: "JesandMing",
-      },
-      {
-        url: wed12,
-        caption: "JesandMing",
-      },
-      {
-        url: wed11,
-        caption: "JesandMing",
-      },
-      {
-        url: wed10,
-        caption: "JesandMing",
-      },
-      {
-        url: wed9,
-        caption: "JesandMing",
-      },
-      {
-        url: wed8,
-        caption: "JesandMing",
-      },
-      {
-        url: wed7,
-        caption: "JesandMing",
-      },
-      {
-        url: wed6,
-        caption: "JesandMing",
-      },
-      {
-        url: wed5,
-        caption: "JesandMing",
-      },
-      {
-        url: wed4,
-        caption: "JesandMing",
-      },
-      {
-        url: wed3,
-        caption: "JesandMing",
-      },
-      {
-        url: wed2,
-        caption: "JesandMing",
-      },
-      {
-        url: wed1,
-        caption: "JesandMing",
-      },
+      }
     ],
 
     contact: {
@@ -350,7 +372,7 @@ function App() {
           <OurStory
             title="Our Story"
             story={weddingData.story}
-            image={[wed1, wed2, wed3, wed4, wed5]}
+            image={[main1, main2, wed1, wed2, wed3, wed4, wed5]}
           />
         </div>
       )}
