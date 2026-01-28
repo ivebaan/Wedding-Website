@@ -7,10 +7,7 @@ import EventDetails from "./components/EventDetails";
 import DressCode from "./components/DressCode";
 import FAQ from "./components/FAQ";
 import RSVP from "./components/RSVP";
-import GiftRegistry from "./components/GiftRegistry";
-import GuestInfo from "./components/GuestInfo";
 import PhotoGallery from "./components/PhotoGallery";
-import Footer from "./components/Footer";
 import "./App.css";
 import wed1 from"../img/wed1.jpeg";
 import wed2 from "../img/wed2.jpeg";
@@ -89,66 +86,7 @@ function App() {
       ,
 
     story:
-      "What began as simple conversations turned into a love we never expected but always needed. What we first thought was just admiration slowly grew into something deeper — a love that felt safe, steady, and like home. Through every season, we chose each other, learned together, and grew side by side. Along the way, our love gave us our greatest blessing — our son, who made our world brighter and our bond even stronger.At this beautiful chapter of our story, we celebrate not just where we started, but how far love has carried us — into a lifetime we can’t wait to share.",
-
-    entourage: {
-      image:
-        "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800",
-      sponsors: {
-        male: [
-          "Dr. Marzon P. Dua",
-          "Engr. Herculio S. Lawas",
-          "Mr. Joel B. Gomez",
-          "Mr. Solomon T. Salvador",
-          "Mr. Gerardo A. Campo, LCB, MPM",
-          "Atty. Ricardo U. Sarmiento, Jr.",
-          "Mr. Vedfrin M. Ajos",
-        ],
-        female: [
-          "Mrs. Sergilane H. Dua",
-          "Mrs. Clarita R. Lawas",
-          "Mrs. Quennie S. Gomez",
-          "Mrs. Ma. Theresa M. Bation",
-          "Mrs. Jessica Lozano - Little, JD",
-          "Mrs. Jervy C. Sarmiento",
-          "Mrs. Sheryll V. Sarmiento",
-          "Mrs. Shirley N. Aburintos",
-        ],
-      },
-      bestMan: "Kim Francis R. Rodriguez",
-      groomsmen: [
-        "Engr. Louie R. Busial",
-        "Tristan Ian A. Brañanola",
-        "Tom Leo A. Brañanola",
-        "Allan Dave C. Busial",
-        "MR. C.T. Bonillao",
-        "Haylo B. Pitogo",
-      ],
-      maidsOfHonor: ["Donna Lee M. Navarro", "Rosemarie N. Mondoza"],
-      bridesmaids: [
-        "Niña Tin L. Padillog",
-        "Resha Jailith F. Lapuza",
-        "Niña Shyne N. Jedulco",
-        "Kathlyn A. Isabelo",
-        "Roselyn L. Duyogan",
-      ],
-      secondarySponsors: {
-        veil: ["Mrs. Josiah Dela Rama", "Mr. Glenn Dela Rama"],
-        cord: ["Mrs. Margie G. Duyogan & Mr. Ernesto A. Duyogan Jr."],
-        "ring bearer": ["Lance Francis Bugbog"],
-        "bible bearer": ["Matt Ethan R. Sagario"],
-        "coin bearer": ["Hannah P. dela Rama"],
-        "flower girls": [
-          "Mrs. Kathrina Niña Sagario-Rodriguez",
-          "Mr. Glenn Sagario Jr.",
-          "Miss Ellise R. Sagario",
-          "Johanz P. Yalli",
-          "Princess Michelangelo L. Duyogan",
-          "Princess Michaela G. Duyogan",
-        ],
-      },
-    },
-
+      "What began as simple conversations turned into a love we never expected but always needed. What we first thought was just admiration slowly grew into something deeper — a love that felt safe, steady, and like home. Through every season, we chose each other, learned together, and grew side by side. Along the way, our love gave us our greatest blessing — our son, who made our world brighter and our bond even stronger. At this beautiful chapter of our story, we celebrate not just where we started, but how far love has carried us — into a lifetime we can’t wait to share.",
     events: [
       {
         name: "Wedding Reception",
@@ -159,7 +97,7 @@ function App() {
         time: "06:00 PM - 09:00 PM",
         mapLink: "https://maps.google.com/?q=Kalipay+Restaurant+Banawa+Cebu+City",
         qrCode:
-          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Chateau+de+Busay",
+          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Kalipay+Restaurant+Banawa+Cebu+City",
         image: [
           resto,
           resto1,
@@ -247,44 +185,6 @@ function App() {
       },
     ],
 
-    guestInfo: [
-      {
-        icon: "",
-        title: "Accommodations",
-        items: [
-          {
-            name: "Radisson Blu Cebu",
-            description: "Luxury hotel near the ceremony venue",
-            address: "Serging Osmeña Blvd, Cebu City",
-            phone: "+63 32 402 9900",
-            link: "https://www.radissonhotels.com/en-us/hotels/radisson-blu-cebu",
-          },
-          {
-            name: "Waterfront Cebu City Hotel",
-            description: "Convenient location with excellent amenities",
-            address: "Salinas Drive, Lahug, Cebu City",
-            phone: "+63 32 232 6888",
-            link: "https://www.waterfronthotels.com.ph/cebu/",
-          },
-        ],
-      },
-      {
-        icon: "",
-        title: "Transportation",
-        items: [
-          {
-            description:
-              "Shuttle service will be available from major hotels to both venues. Please coordinate with us for pickup times.",
-          },
-          {
-            name: "Taxi & Ride-sharing",
-            description:
-              "Grab and regular taxis are readily available throughout Cebu City.",
-          },
-        ],
-      },
-    ],
-
     gallery: [
       {
         url: wed19,
@@ -367,7 +267,7 @@ function App() {
     contact: {
       email: "jesming@gmail.com",
       phone: "+63 912 345 6789",
-      whatsapp: "639123456789",
+      messenger: "JesMingWedding",
     },
 
     rsvp: {
@@ -512,24 +412,6 @@ function App() {
             contactInfo={weddingData.contact}
             deadline={weddingData.rsvp.deadline}
           />
-        </div>
-      )}
-
-      {/* Gift Registry Section */}
-      {activeSection === "gifts" && (
-        <div className="section-wrapper">
-          <GiftRegistry
-            title="Gift Registry"
-            description="Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we would be grateful for contributions toward our future together."
-            options={weddingData.gifts}
-          />
-        </div>
-      )}
-
-      {/* Guest Information Section */}
-      {activeSection === "guest-info" && (
-        <div className="section-wrapper">
-          <GuestInfo title="Guest Information" sections={weddingData.guestInfo} />
         </div>
       )}
 
