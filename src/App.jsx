@@ -26,7 +26,7 @@ import wed15 from "../img/wed15.jpeg";
 import wed16 from "../img/wed16.jpeg";
 import wed17 from "../img/wed17.jpeg";
 import wed18 from "../img/wed18.jpeg";
-import dress from "../img/dress.png";
+import dress1 from "../img/dress1.png";
 import resto from "../img/resto.jpg";
 import resto1 from "../img/resto1.jpg";
 import resto2 from "../img/resto2.jpg";
@@ -36,11 +36,10 @@ import prenup3 from "../img/prenup3.jpeg";
 import prenup4 from "../img/prenup4.jpeg";
 import prenup5 from "../img/prenup5.jpeg";
 import prenup6 from "../img/prenup6.jpeg";
-import prenup7 from "../img/prenup7.jpeg";
 import prenup8 from "../img/prenup8.jpeg";
 import main1 from "../img/main1.jpeg";
 import main2 from "../img/main2.jpeg";
-
+import dress2 from "../img/dress2.png";
 
 
 function App() {
@@ -120,8 +119,7 @@ function App() {
       description:
         "We would love to see you in your best and most comfortable semi-formal attire that complements our color palette.",
       colors: ["#8B9D83", "#9CAF88", "#D4A5A5", "#E8B4B8"],
-      image:
-        dress
+      images: [dress1, dress2]
     },
 
     faq: [
@@ -392,7 +390,7 @@ function App() {
             subtitle={weddingData.dressCode.subtitle}
             description={weddingData.dressCode.description}
             colors={weddingData.dressCode.colors}
-            image={weddingData.dressCode.image}
+            images={weddingData.dressCode.images}
           />
         </div>
       )}
