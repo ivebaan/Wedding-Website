@@ -64,44 +64,98 @@
   z-index: 4;
 }
 
-.dress-code-image {
-  max-width: 800px;
-  margin: 2rem auto 0;
-}
-
-.dress-code-image img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: none;
-}
-
-@media (max-width: 768px) {
-  .color-palette {
-    height: 100px;
+  .dress-code-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    flex-wrap: wrap;
   }
 
-  .color-circle {
-    width: 100px;
-    height: 100px;
+  .dress-code-image {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
   }
 
-  .color-circle:nth-child(1) {
-    transform: translateX(calc(-50% - 90px));
+  .dress-code-image img {
+    width: 100%;
   }
 
-  .color-circle:nth-child(2) {
-    transform: translateX(calc(-50% - 30px));
-  }
-
-  .color-circle:nth-child(3) {
-    transform: translateX(calc(-50% + 30px));
-  }
-
-  .color-circle:nth-child(4) {
-    transform: translateX(calc(-50% + 90px));
-  }
-}
 .dress-code-description{
   color: #8B9D83;
   font-family: 'Times New Roman', Times, serif;
+}
+
+.qr-codes-section {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(107, 143, 163, 0.2);
+}
+
+.qr-section-title {
+  font-size: 1.5rem;
+  color: #6B8FA3;
+  font-style: italic;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.qr-codes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.qr-code-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.qr-code-wrapper {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.qr-code-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.qr-code-image {
+  display: block;
+  width: 120px;
+  height: 120px;
+}
+
+.qr-code-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #8B9D83;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .qr-codes-container {
+    gap: 2.5rem;
+  }
+  
+  .qr-code-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .qr-section-title {
+    font-size: 1.3rem;
+  }
 }

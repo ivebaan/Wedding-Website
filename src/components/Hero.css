@@ -255,6 +255,10 @@
     flex-wrap: nowrap;
   }
 
+  .hero-countdown .countdown-item:hover {
+    transform: none;
+  }
+
   .hero-countdown .countdown-number {
     font-size: 2.2rem;
   }
@@ -296,6 +300,10 @@
   .hero-countdown .countdown-item {
     flex: 1;
     min-width: 0;
+  }
+
+  .hero-countdown .countdown-item:hover {
+    transform: none;
   }
 
   .hero-countdown .countdown-number {
