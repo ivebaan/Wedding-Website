@@ -160,28 +160,28 @@
   }
   
   .color-palette {
-    height: 80px;
+    height: 90px;
     margin: 1.5rem auto;
   }
   
   .color-circle {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
   
   .color-circle:nth-child(1) {
-    transform: translateX(calc(-50% - 72px));
+    transform: translateX(calc(-50% - 85px));
   }
   
   .color-circle:nth-child(2) {
-    transform: translateX(calc(-50% - 24px));
+    transform: translateX(calc(-50% - 30px));
   }
   
   .color-circle:nth-child(3) {
-    transform: translateX(calc(-50% + 24px));
+    transform: translateX(calc(-50% + 30px));
   }
   
   .color-circle:nth-child(4) {
-    transform: translateX(calc(-50% + 72px));
+    transform: translateX(calc(-50% + 85px));
   }
 }
