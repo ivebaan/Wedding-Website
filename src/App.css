@@ -44,7 +44,7 @@ body {
 
 /* Section wrapper to account for fixed navbar */
 .section-wrapper {
-  padding-top: 80px;
+  padding-top: 120px;
   margin-top: -80px;
 }
 
@@ -1576,73 +1576,44 @@ section {
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
-    padding: 1.2rem 2rem;
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
   }
 
   .menu-toggle {
-    display: block;
+    display: none;
   }
 
   .nav-logo {
-    font-size: 2.5rem;
+    display: block;
+    font-size: 2rem;
+    padding: 0;
   }
 
   .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 2rem;
-    box-shadow: 0 8px 32px var(--shadow);
-    display: none;
-    gap: 0;
-    border-top: 1px solid rgba(139, 157, 131, 0.2);
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    gap: 1.5rem;
+    border-top: none;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .nav-menu::before {
-    content: "Jes & Ming";
-    display: block;
-    font-family: "Allura", cursive;
-    font-size: 2.5rem;
-    background: linear-gradient(
-      135deg,
-      var(--sage-green) 0%,
-      var(--light-sage) 50%,
-      var(--dusty-rose) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: center;
-    padding: 1rem 0 1.5rem 0;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid rgba(139, 157, 131, 0.2);
-    font-weight: 400;
-  }
-
-  .nav-menu.active {
-    display: flex;
-    animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    display: none;
   }
 
   .nav-menu li {
-    width: 100%;
+    width: auto;
     text-align: center;
-    border-bottom: 1px solid rgba(139, 157, 131, 0.1);
+    border-bottom: none;
   }
 
   .nav-menu li:last-child {
@@ -1650,9 +1621,9 @@ section {
   }
 
   .nav-menu li a {
-    padding: 1.2rem;
-    width: 100%;
-    font-size: 0.95rem;
+    padding: 0.3rem 0;
+    width: auto;
+    font-size: 0.75rem;
   }
 
   .nav-menu li:not(:last-child)::after {
