@@ -1600,10 +1600,11 @@ section {
     padding: 0;
     box-shadow: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     border-top: none;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
+    overflow-x: auto;
   }
 
   .nav-menu::before {
@@ -1614,6 +1615,7 @@ section {
     width: auto;
     text-align: center;
     border-bottom: none;
+    flex-shrink: 0;
   }
 
   .nav-menu li:last-child {
@@ -1623,7 +1625,8 @@ section {
   .nav-menu li a {
     padding: 0.3rem 0;
     width: auto;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
+    white-space: nowrap;
   }
 
   .nav-menu li:not(:last-child)::after {
