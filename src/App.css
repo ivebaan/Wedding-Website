@@ -1602,6 +1602,27 @@ section {
     border-top: 1px solid rgba(139, 157, 131, 0.2);
   }
 
+  .nav-menu::before {
+    content: "Jes & Ming";
+    display: block;
+    font-family: "Allura", cursive;
+    font-size: 2.5rem;
+    background: linear-gradient(
+      135deg,
+      var(--sage-green) 0%,
+      var(--light-sage) 50%,
+      var(--dusty-rose) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    padding: 1rem 0 1.5rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(139, 157, 131, 0.2);
+    font-weight: 400;
+  }
+
   .nav-menu.active {
     display: flex;
     animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
