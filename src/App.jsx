@@ -8,7 +8,7 @@ import FAQ from "./components/FAQ";
 import RSVP from "./components/RSVP";
 import PhotoGallery from "./components/PhotoGallery";
 import "./App.css";
-import wed1 from"../img/wed1.jpeg";
+import wed1 from "../img/wed1.jpeg";
 import wed2 from "../img/wed2.jpeg";
 import wed3 from "../img/wed3.jpeg";
 import wed4 from "../img/wed4.jpeg";
@@ -32,7 +32,7 @@ import resto1 from "../img/resto1.jpg";
 import resto2 from "../img/resto2.jpg";
 import prenup1 from "../img/prenup1.jpeg";
 import prenup2 from "../img/prenup2.jpeg";
-import prenup3 from "../img/prenup3.jpeg"; 
+import prenup3 from "../img/prenup3.jpeg";
 import prenup4 from "../img/prenup4.jpeg";
 import prenup5 from "../img/prenup5.jpeg";
 import prenup6 from "../img/prenup6.jpeg";
@@ -40,7 +40,6 @@ import prenup8 from "../img/prenup8.jpeg";
 import main1 from "../img/main1.jpeg";
 import main2 from "../img/main2.jpeg";
 import dress2 from "../img/dress2.png";
-
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -89,27 +88,21 @@ function App() {
     },
     date: "23 February 2026",
     weddingDateTime: "2026-02-23T13:00:00",
-    backgroundImage: wed2
-      ,
-
+    backgroundImage: wed2,
     story:
       "What began as simple conversations turned into a love we never expected but always needed. What we first thought was just admiration slowly grew into something deeper — a love that felt safe, steady, and like home. Through every season, we chose each other, learned together, and grew side by side. Along the way, our love gave us our greatest blessing — our son, who made our world brighter and our bond even stronger. At this beautiful chapter of our story, we celebrate not just where we started, but how far love has carried us — into a lifetime we can’t wait to share.",
     events: [
       {
         name: "Wedding Reception",
         venue: "Kalipay Restaurant",
-        address:
-          "Kalipay Restaurant, Banawa, Cebu City, Philippines 6000",
+        address: "Kalipay Restaurant, Banawa, Cebu City, Philippines 6000",
         date: "Monday, February 23, 2026",
         time: "06:00 PM - 09:00 PM",
-        mapLink: "https://maps.google.com/?q=Kalipay+Restaurant+Banawa+Cebu+City",
+        mapLink:
+          "https://maps.google.com/?q=Kalipay+Restaurant+Banawa+Cebu+City",
         qrCode:
           "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Kalipay+Restaurant+Banawa+Cebu+City",
-        image: [
-          resto,
-          resto1,
-          resto2
-        ],
+        image: [resto, resto1, resto2],
       },
     ],
 
@@ -119,7 +112,7 @@ function App() {
       description:
         "We would love to see you in your best and most comfortable semi-formal attire that complements our color palette.",
       colors: ["#8B9D83", "#9CAF88", "#D4A5A5", "#E8B4B8"],
-      images: [dress1, dress2]
+      images: [dress1, dress2],
     },
 
     faq: [
@@ -175,7 +168,7 @@ function App() {
         url: prenup2,
         caption: "JesandMing",
       },
-      
+
       {
         url: prenup1,
         caption: "JesandMing",
@@ -188,7 +181,7 @@ function App() {
         url: main1,
         caption: "JesandMing",
       },
-      
+
       {
         url: prenup3,
         caption: "JesandMing",
@@ -213,7 +206,7 @@ function App() {
         url: wed8,
         caption: "JesandMing",
       },
-       {
+      {
         url: wed3,
         caption: "JesandMing",
       },
@@ -252,7 +245,8 @@ function App() {
       {
         url: wed10,
         caption: "JesandMing",
-      },{
+      },
+      {
         url: wed13,
         caption: "JesandMing",
       },
@@ -264,7 +258,7 @@ function App() {
         url: wed4,
         caption: "JesandMing",
       },
-     
+
       {
         url: wed18,
         caption: "JesandMing",
@@ -280,7 +274,7 @@ function App() {
       {
         url: wed15,
         caption: "JesandMing",
-      }
+      },
     ],
 
     contact: {
@@ -309,42 +303,73 @@ function App() {
         <div className="nav-logo">
           {weddingData.couple.groom} & {weddingData.couple.bride}
         </div>
-        <button className="menu-toggle" onClick={() => setShowMenu(!showMenu)}>
+        <button
+          className={`menu-toggle ${showMenu ? "hidden" : ""}`}
+          onClick={() => setShowMenu(!showMenu)}
+        >
           ☰
         </button>
         <ul className={`nav-menu ${showMenu ? "active" : ""}`}>
           <li>
-            <a href="#home" className={activeSection === "home" ? "active" : ""} onClick={(e) => scrollToSection(e, "home")}>
+            <a
+              href="#home"
+              className={activeSection === "home" ? "active" : ""}
+              onClick={(e) => scrollToSection(e, "home")}
+            >
               Home
             </a>
           </li>
-           <li>
-            <a href="#our-story" className={activeSection === "our-story" ? "active" : ""} onClick={(e) => scrollToSection(e, "our-story")}>
+          <li>
+            <a
+              href="#our-story"
+              className={activeSection === "our-story" ? "active" : ""}
+              onClick={(e) => scrollToSection(e, "our-story")}
+            >
               Our Story
             </a>
           </li>
           <li>
-            <a href="#details" className={activeSection === "details" ? "active" : ""} onClick={(e) => scrollToSection(e, "details")}>
+            <a
+              href="#details"
+              className={activeSection === "details" ? "active" : ""}
+              onClick={(e) => scrollToSection(e, "details")}
+            >
               Details
             </a>
           </li>
           <li>
-            <a href="#dress-code" className={activeSection === "dress-code" ? "active" : ""} onClick={(e) => scrollToSection(e, "dress-code")}>
+            <a
+              href="#dress-code"
+              className={activeSection === "dress-code" ? "active" : ""}
+              onClick={(e) => scrollToSection(e, "dress-code")}
+            >
               Dress Code
             </a>
           </li>
           <li>
-            <a href="#faq" className={activeSection === "faq" ? "active" : ""} onClick={(e) => scrollToSection(e, "faq")}>
+            <a
+              href="#faq"
+              className={activeSection === "faq" ? "active" : ""}
+              onClick={(e) => scrollToSection(e, "faq")}
+            >
               FAQ
             </a>
           </li>
           <li>
-            <a href="#rsvp" className={activeSection === "rsvp" ? "active" : ""} onClick={(e) => scrollToSection(e, "rsvp")}>
+            <a
+              href="#rsvp"
+              className={activeSection === "rsvp" ? "active" : ""}
+              onClick={(e) => scrollToSection(e, "rsvp")}
+            >
               RSVP
             </a>
           </li>
           <li>
-            <a href="#gallery" className={activeSection === "gallery" ? "active" : ""} onClick={(e) => scrollToSection(e, "gallery")}>
+            <a
+              href="#gallery"
+              className={activeSection === "gallery" ? "active" : ""}
+              onClick={(e) => scrollToSection(e, "gallery")}
+            >
               Gallery
             </a>
           </li>
@@ -424,8 +449,6 @@ function App() {
           <PhotoGallery title="Our Memories" photos={weddingData.gallery} />
         </div>
       )}
-
-      
     </div>
   );
 }

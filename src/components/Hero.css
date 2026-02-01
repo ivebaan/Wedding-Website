@@ -40,7 +40,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 6rem 2rem 4rem;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -229,14 +229,16 @@
 
 @media (max-width: 768px) {
   .hero-glass-card {
-    padding: 2.5rem 1.5rem;
+    padding: 3rem 1.5rem 2.5rem;
     border-radius: 30px;
   }
 
   .hero-subtitle {
-    font-size: 0.7rem !important;
-    letter-spacing: 4px !important;
-    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+    letter-spacing: 7px !important;
+    font-weight: 700 !important;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
   }
 
   .hero-logo {
@@ -271,14 +273,16 @@
 
 @media (max-width: 480px) {
   .hero-glass-card {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1.2rem 2rem;
     border-radius: 25px;
   }
 
   .hero-subtitle {
-    font-size: 0.6rem !important;
-    letter-spacing: 3px !important;
-    font-weight: 600 !important;
+    font-size: 1rem !important;
+    letter-spacing: 6px !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
   }
 
   .hero-logo {
