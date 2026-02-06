@@ -226,16 +226,14 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.97);
   box-shadow: none;
   z-index: 1000;
   padding: 1.1rem 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: padding 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
   border-bottom: 1px solid rgba(201, 168, 138, 0.1);
 }
 
@@ -1572,6 +1570,20 @@ section {
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
   font-weight: 500;
+}
+
+/* Disable expensive continuous animations on mobile */
+@media (max-width: 768px) {
+  .hero-section::before,
+  .hero-section::after {
+    animation: none !important;
+  }
+
+  .hero-content {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.85);
+  }
 }
 
 /* Responsive Design */

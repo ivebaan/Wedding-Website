@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./PhotoGallery.css";
 
 const PhotoGallery = ({ title, photos }) => {
@@ -7,31 +7,24 @@ const PhotoGallery = ({ title, photos }) => {
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
-  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
     let scrollPosition = 0;
-    const scrollSpeed = 1; // pixels per frame
+    const scrollSpeed = 1;
 
     const autoScroll = () => {
-      // Only auto-scroll when not dragging
       if (!isDraggingRef.current) {
         scrollPosition += scrollSpeed;
-
-        // When we've scrolled past the first set of images, reset to beginning
         if (scrollPosition >= scrollContainer.scrollWidth / 2) {
           scrollPosition = 0;
         }
-
         scrollContainer.scrollLeft = scrollPosition;
       } else {
-        // Update scroll position when dragging to maintain sync
         scrollPosition = scrollContainer.scrollLeft;
       }
-
       animationRef.current = requestAnimationFrame(autoScroll);
     };
 
@@ -40,32 +33,31 @@ const PhotoGallery = ({ title, photos }) => {
     // Mouse drag handlers
     const handleMouseDown = (e) => {
       isDraggingRef.current = true;
-      setIsDragging(true);
+      scrollContainer.classList.add("dragging");
       startXRef.current = e.pageX - scrollContainer.offsetLeft;
       scrollLeftRef.current = scrollContainer.scrollLeft;
       scrollContainer.style.cursor = "grabbing";
-      scrollContainer.style.userSelect = "none";
     };
 
     const handleMouseMove = (e) => {
       if (!isDraggingRef.current) return;
       e.preventDefault();
       const x = e.pageX - scrollContainer.offsetLeft;
-      const walk = (x - startXRef.current) * 2; // Multiply for faster scroll
+      const walk = (x - startXRef.current) * 2;
       scrollContainer.scrollLeft = scrollLeftRef.current - walk;
     };
 
     const handleMouseUpOrLeave = () => {
+      if (!isDraggingRef.current) return;
       isDraggingRef.current = false;
-      setIsDragging(false);
+      scrollContainer.classList.remove("dragging");
       scrollContainer.style.cursor = "grab";
-      scrollContainer.style.userSelect = "auto";
     };
 
-    // Touch drag handlers for mobile
+    // Touch drag handlers — passive where possible
     const handleTouchStart = (e) => {
       isDraggingRef.current = true;
-      setIsDragging(true);
+      scrollContainer.classList.add("dragging");
       startXRef.current = e.touches[0].pageX - scrollContainer.offsetLeft;
       scrollLeftRef.current = scrollContainer.scrollLeft;
     };
@@ -79,33 +71,30 @@ const PhotoGallery = ({ title, photos }) => {
 
     const handleTouchEnd = () => {
       isDraggingRef.current = false;
-      setIsDragging(false);
+      scrollContainer.classList.remove("dragging");
     };
 
-    // Add event listeners
     scrollContainer.addEventListener("mousedown", handleMouseDown);
     scrollContainer.addEventListener("mousemove", handleMouseMove);
     scrollContainer.addEventListener("mouseup", handleMouseUpOrLeave);
     scrollContainer.addEventListener("mouseleave", handleMouseUpOrLeave);
-    scrollContainer.addEventListener("touchstart", handleTouchStart);
-    scrollContainer.addEventListener("touchmove", handleTouchMove);
+    scrollContainer.addEventListener("touchstart", handleTouchStart, { passive: true });
+    scrollContainer.addEventListener("touchmove", handleTouchMove, { passive: true });
     scrollContainer.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      if (scrollContainer) {
-        scrollContainer.removeEventListener("mousedown", handleMouseDown);
-        scrollContainer.removeEventListener("mousemove", handleMouseMove);
-        scrollContainer.removeEventListener("mouseup", handleMouseUpOrLeave);
-        scrollContainer.removeEventListener("mouseleave", handleMouseUpOrLeave);
-        scrollContainer.removeEventListener("touchstart", handleTouchStart);
-        scrollContainer.removeEventListener("touchmove", handleTouchMove);
-        scrollContainer.removeEventListener("touchend", handleTouchEnd);
-      }
+      scrollContainer.removeEventListener("mousedown", handleMouseDown);
+      scrollContainer.removeEventListener("mousemove", handleMouseMove);
+      scrollContainer.removeEventListener("mouseup", handleMouseUpOrLeave);
+      scrollContainer.removeEventListener("mouseleave", handleMouseUpOrLeave);
+      scrollContainer.removeEventListener("touchstart", handleTouchStart);
+      scrollContainer.removeEventListener("touchmove", handleTouchMove);
+      scrollContainer.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [photos]); // Re-run when photos change
+  }, [photos]);
 
   return (
     <section className="photo-gallery" id="gallery">
@@ -123,7 +112,7 @@ const PhotoGallery = ({ title, photos }) => {
       {photos && photos.length > 0 ? (
         <div className="gallery-outer">
           <div
-            className={`gallery-scroll-container ${isDragging ? "dragging" : ""}`}
+            className="gallery-scroll-container"
             ref={scrollRef}
           >
             <div className="gallery-track">
