@@ -153,10 +153,9 @@
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   aspect-ratio: 3/4;
   background: linear-gradient(135deg, #faf8f5, #f0ece7);
-  will-change: transform;
 }
 
 /* subtle gold border on hover */
@@ -190,12 +189,9 @@
   pointer-events: none;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: translate3d(0, 0, 0) scale(1.001);
-  -webkit-transform: translate3d(0, 0, 0) scale(1.001);
+  transform: translateZ(0);
   position: relative;
   z-index: 1;
-  filter: blur(0);
-  -webkit-filter: blur(0);
 }
 
 .gallery-slide:hover .gallery-image-wrapper img {
