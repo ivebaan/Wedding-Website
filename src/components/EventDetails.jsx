@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import './EventDetails.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWineGlassAlt, faMapMarkerAlt, faCalendar, faClock } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +25,15 @@ const EventDetails = ({ title, events }) => {
 
   return (
     <section className="event-details" id="details">
-      <h2 className="section-title">{title}</h2>
+      <div className="section-header">
+        <span className="section-ornament">✦</span>
+        <h2 className="section-title">{title}</h2>
+        <div className="section-divider">
+          <span className="section-divider-line"></span>
+          <span className="section-divider-icon">♥</span>
+          <span className="section-divider-line"></span>
+        </div>
+      </div>
       <div className="events-grid">
         {events.map((event, index) => {
           const images = Array.isArray(event.image) ? event.image : [event.image];
@@ -36,7 +44,7 @@ const EventDetails = ({ title, events }) => {
               <div className="event-layout">
                 {event.image && (
                   <div className="event-image">
-                    <img src={images[currentIndex]} alt={event.name} />
+                    <img src={images[currentIndex]} alt={event.name} loading="lazy" decoding="async" />
                     {images.length > 1 && (
                       <>
                         <button 
@@ -110,4 +118,4 @@ const EventDetails = ({ title, events }) => {
   );
 };
 
-export default EventDetails;
+export default memo(EventDetails);

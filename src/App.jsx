@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from "react";
 import Hero from "./components/Hero";
-import Countdown from "./components/Countdown";
-import OurStory from "./components/OurStory";
-import EventDetails from "./components/EventDetails";
-import DressCode from "./components/DressCode";
-import FAQ from "./components/FAQ";
-import RSVP from "./components/RSVP";
-import PhotoGallery from "./components/PhotoGallery";
 import "./App.css";
+
+// Lazy-load below-the-fold sections — only fetched when navigated to
+const OurStory = lazy(() => import("./components/OurStory"));
+const EventDetails = lazy(() => import("./components/EventDetails"));
+const DressCode = lazy(() => import("./components/DressCode"));
+const FAQ = lazy(() => import("./components/FAQ"));
+const RSVP = lazy(() => import("./components/RSVP"));
+const PhotoGallery = lazy(() => import("./components/PhotoGallery"));
 import wed1 from "../img/wed1.jpeg";
 import wed2 from "../img/wed2.jpeg";
 import wed3 from "../img/wed3.jpeg";
@@ -40,48 +41,45 @@ import prenup8 from "../img/prenup8.jpeg";
 import main1 from "../img/main1.jpeg";
 import main2 from "../img/main2.jpeg";
 import dress2 from "../img/dress2.png";
+import child1 from "../img/child1.jpeg"; 
+import child2 from "../img/child2.jpeg";
+import child3 from "../img/child3.jpeg";
+import child4 from "../img/child4.jpeg";
+import child5 from "../img/child5.jpeg";
+import child6 from "../img/child6.jpeg";
+import child7 from "../img/child7.jpeg";
+import child8 from "../img/child8.jpeg";
+import child9 from "../img/child9.jpeg";
+import child10 from "../img/child10.jpeg"; 
+import child11 from "../img/child11.jpeg";
+import child12 from "../img/child12.jpeg";
+import child13 from "../img/child13.jpeg";
+import child14 from "../img/child14.jpeg";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Handle scroll effect for navbar
+  // Throttled scroll handler using rAF
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Intersection Observer for fade-in animations
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in-visible");
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections
-    const sections = document.querySelectorAll(
-      ".couple-section, .entourage-section, .details-section, .rsvp-section, .faq-section, .gallery-section, .photo-gallery",
-    );
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Wedding data configuration - Easily customizable for any wedding
-  const weddingData = {
+  // Memoize wedding data — large static object, never changes between renders
+  const weddingData = useMemo(() => ({
     couple: {
       groom: "Jes",
       bride: "Ming",
@@ -117,58 +115,58 @@ function App() {
 
     faq: [
       {
-        question: "What time should I Arrive?",
+        question: "What kind of wedding are we having?",
         answer:
-          "Please arrive at least 30 minutes before the ceremony starts at 1:00 PM.",
+          "It is a civil wedding where we chose to celebrate one of the most meaningful highlights of our lives with the people who are closest to our hearts. We will be sharing a dinner together, along with special activities we’ve prepared to make this celebration truly memorable.",
+      },
+      {
+        question: "What time should I arrive?",
+        answer:
+          "The reception begins at 6:00 PM. We kindly encourage everyone to arrive on time to fully enjoy the celebration.",
       },
       {
         question: "What time will the event start and end?",
         answer:
-          "The ceremony starts at 1:00 PM, followed by the reception at 6:00 PM. The event is expected to conclude around 10:00 PM.",
+          "The event will start at 6:00 PM and conclude at 9:00 PM.",
       },
       {
-        question: "Can we take pictures during the ceremony?",
+        question: "Is parking available at the venue?",
         answer:
-          "We kindly ask that you refrain from taking photos during the ceremony to allow our professional photographers to capture the moment. Feel free to take as many photos as you'd like during the reception!",
+          "Yes, the restaurant offers parking spaces for both cars and motorcycles.",
       },
       {
-        question: "Is there a parking lot available?",
+        question: "What should I do if I’m unable to attend?",
         answer:
-          "Yes, both venues have parking facilities available for guests. Parking attendants will be on-site to assist you.",
-      },
-      {
-        question: "What should I do if I can't attend?",
-        answer:
-          "We understand that plans can change. Please let us know as soon as possible by contacting us directly.",
+          "We completely understand that plans may change. Please inform us as soon as possible by contacting us directly.",
       },
       {
         question:
-          "Previously confirmed my attendance, but now I cannot attend. What should I do?",
+          "I previously confirmed my attendance but can no longer attend. What should I do?",
         answer:
-          "Please contact us immediately so we can adjust our arrangements accordingly. We appreciate your prompt notification.",
+          "Kindly notify us right away so we can adjust our arrangements. We truly appreciate your prompt update.",
       },
       {
-        question: "Can we choose where to sit at the reception?",
+        question: "Can we choose our seats at the reception?",
         answer:
-          "We have arranged seating to ensure everyone has a great experience. Your table assignment will be provided at the reception entrance.",
+          "To ensure a smooth program and everyone’s comfort, seating has been pre-arranged. Your table assignment will be available at the reception entrance.",
       },
       {
         question: "Do you have any gift preferences?",
         answer:
-          "Your presence is the greatest gift! However, if you wish to give something, monetary gifts are greatly appreciated as we start our new journey together.",
+          "Your presence at our celebration is already a wonderful gift. However, if you wish to give something, a monetary gift would be sincerely appreciated as we begin our new journey together.",
       },
       {
-        question: "Can I bring someone with me?",
+        question: "May I bring a plus one?",
         answer:
-          "Due to limited capacity, we can only accommodate guests formally invited. Please check your invitation for the number of seats reserved under your name.",
+          "Due to limited seating, we can only accommodate guests who are formally invited. Please refer to your invitation for the number of seats reserved under your name.",
+      },
+      {
+        question: "Can I bring my kid(s) with me?",
+        answer:
+          "We truly adore your little ones and would love for them to celebrate with us. However, we have chosen to keep this event a child-free celebration. We hope this allows you to relax and fully enjoy the evening with us, and we appreciate your understanding.",
       },
     ],
     gallery: [
-      {
-        url: prenup2,
-        caption: "JesandMing",
-      },
-
       {
         url: prenup1,
         caption: "JesandMing",
@@ -278,23 +276,21 @@ function App() {
     ],
 
     contact: {
-      email: "jesming@gmail.com",
+      email: "jestinandnormae@gmail.com",
       phone: "+63 912 345 6789",
-      messenger: "JesMingWedding",
+      messenger: "Maria Normae Flores",
     },
 
     rsvp: {
-      deadline: "Februrary 23, 2026",
+      deadline: "February 10, 2026",
     },
-  };
+  }), []);
 
-  const weddingDate = new Date("2026-02-23T13:00:00");
-
-  const scrollToSection = (e, sectionId) => {
+  const scrollToSection = useCallback((e, sectionId) => {
     e.preventDefault();
     setShowMenu(false);
     setActiveSection(sectionId);
-  };
+  }, []);
 
   return (
     <div className="app">
@@ -384,71 +380,74 @@ function App() {
             groom={weddingData.couple.groom}
             date={weddingData.date}
             backgroundImage={weddingData.backgroundImage}
-            weddingDateTime={weddingData.weddingDateTime}
+            targetDate={weddingData.weddingDateTime}
           />
         </div>
       )}
 
-      {/* Our Story Section */}
-      {activeSection === "our-story" && (
-        <div className="section-wrapper">
-          <OurStory
-            title="Our Story"
-            story={weddingData.story}
-            image={[main1, main2, wed1, wed2, wed3, wed4, wed5]}
-          />
-        </div>
-      )}
+      {/* Lazy-loaded sections wrapped in Suspense */}
+      <Suspense fallback={<div className="section-loading"><span className="section-loading-dot"></span></div>}>
+        {/* Our Story Section */}
+        {activeSection === "our-story" && (
+          <div className="section-wrapper">
+            <OurStory
+              title="Our Story"
+              story={weddingData.story}
+              image={[child1, child2, child3, child4, child5, child6, child7, child8, child9, child10, child11, child12, child13, child14, main1, main2, wed1, wed2, wed3, wed4, wed5]}
+            />
+          </div>
+        )}
 
-      {/* Event Details Section */}
-      {activeSection === "details" && (
-        <div className="section-wrapper">
-          <EventDetails title="When & Where" events={weddingData.events} />
-        </div>
-      )}
+        {/* Event Details Section */}
+        {activeSection === "details" && (
+          <div className="section-wrapper">
+            <EventDetails title="When & Where" events={weddingData.events} />
+          </div>
+        )}
 
-      {/* Dress Code Section */}
-      {activeSection === "dress-code" && (
-        <div className="section-wrapper">
-          <DressCode
-            title={weddingData.dressCode.title}
-            subtitle={weddingData.dressCode.subtitle}
-            description={weddingData.dressCode.description}
-            colors={weddingData.dressCode.colors}
-            images={weddingData.dressCode.images}
-          />
-        </div>
-      )}
+        {/* Dress Code Section */}
+        {activeSection === "dress-code" && (
+          <div className="section-wrapper">
+            <DressCode
+              title={weddingData.dressCode.title}
+              subtitle={weddingData.dressCode.subtitle}
+              description={weddingData.dressCode.description}
+              colors={weddingData.dressCode.colors}
+              images={weddingData.dressCode.images}
+            />
+          </div>
+        )}
 
-      {/* FAQ Section */}
-      {activeSection === "faq" && (
-        <div className="section-wrapper">
-          <FAQ
-            title="Frequently Asked Questions"
-            subtitle="POPULAR QUESTIONS"
-            questions={weddingData.faq}
-          />
-        </div>
-      )}
+        {/* FAQ Section */}
+        {activeSection === "faq" && (
+          <div className="section-wrapper">
+            <FAQ
+              title="Frequently Asked Questions"
+              subtitle="POPULAR QUESTIONS"
+              questions={weddingData.faq}
+            />
+          </div>
+        )}
 
-      {/* RSVP Section */}
-      {activeSection === "rsvp" && (
-        <div className="section-wrapper">
-          <RSVP
-            title="RSVP"
-            description="We can't wait to celebrate with you! Please let us know if you can make it."
-            contactInfo={weddingData.contact}
-            deadline={weddingData.rsvp.deadline}
-          />
-        </div>
-      )}
+        {/* RSVP Section */}
+        {activeSection === "rsvp" && (
+          <div className="section-wrapper">
+            <RSVP
+              title="RSVP"
+              description="We can't wait to celebrate with you! Please let us know if you can make it."
+              contactInfo={weddingData.contact}
+              deadline={weddingData.rsvp.deadline}
+            />
+          </div>
+        )}
 
-      {/* Photo Gallery Section */}
-      {activeSection === "gallery" && (
-        <div className="section-wrapper" id="gallery">
-          <PhotoGallery title="Our Memories" photos={weddingData.gallery} />
-        </div>
-      )}
+        {/* Photo Gallery Section */}
+        {activeSection === "gallery" && (
+          <div className="section-wrapper" id="gallery">
+            <PhotoGallery title="Our Memories" photos={weddingData.gallery} />
+          </div>
+        )}
+      </Suspense>
     </div>
   );
 }

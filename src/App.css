@@ -42,6 +42,28 @@ body {
   width: 100%;
 }
 
+/* Suspense loading state */
+.section-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding-top: 120px;
+}
+
+.section-loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c9a88a;
+  animation: loadPulse 1s ease-in-out infinite;
+}
+
+@keyframes loadPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
 /* Section wrapper to account for fixed navbar */
 .section-wrapper {
   padding-top: 120px;
@@ -204,123 +226,91 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: none;
   z-index: 1000;
-  padding: 1rem 5rem;
+  padding: 1.1rem 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom: 1px solid rgba(139, 157, 131, 0.12);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid rgba(201, 168, 138, 0.1);
 }
 
 .navbar::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--sage-green),
-    var(--dusty-rose),
-    transparent
-  );
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.navbar:hover::after {
-  width: 60%;
+  display: none;
 }
 
 .navbar.scrolled {
-  padding: 0.6rem 5rem;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(30px) saturate(200%);
-  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  padding: 0.7rem 5rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.04);
+  border-bottom-color: rgba(201, 168, 138, 0.15);
 }
 
 .nav-logo {
   font-family: "Allura", cursive;
-  font-size: 2.5rem;
-  background: linear-gradient(
-    135deg,
-    var(--sage-green) 0%,
-    var(--light-sage) 50%,
-    var(--dusty-rose) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 2rem;
+  color: #c9a88a;
+  -webkit-text-fill-color: #c9a88a;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
   font-weight: 400;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s ease;
   cursor: pointer;
   position: relative;
-  padding: 0.3rem 1rem;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0;
+  letter-spacing: 1px;
 }
 
 .nav-logo::before {
-  content: "❦";
-  font-size: 1rem;
-  opacity: 0.6;
-  transition: all 0.4s ease;
+  display: none;
 }
 
 .nav-logo::after {
-  content: "❦";
-  font-size: 1rem;
-  opacity: 0.6;
-  transition: all 0.4s ease;
+  display: none;
 }
 
 .nav-logo:hover {
-  transform: scale(1.08);
-  filter: brightness(1.15);
-  letter-spacing: 2px;
-}
-
-.nav-logo:hover::before,
-.nav-logo:hover::after {
-  opacity: 1;
-  transform: scale(1.2);
+  transform: none;
+  filter: none;
+  letter-spacing: 1px;
+  color: #b8977a;
+  -webkit-text-fill-color: #b8977a;
 }
 
 .menu-toggle {
   display: none;
-  background: linear-gradient(135deg, var(--sage-green), var(--light-sage));
+  background: #2c3e2c;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: white;
   cursor: pointer;
-  padding: 0.8rem 1rem;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(139, 157, 131, 0.3);
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: none;
 }
 
 .menu-toggle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(139, 157, 131, 0.4);
+  transform: none;
+  background: #3a4f3a;
 }
 
 .menu-toggle:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 3rem;
+  gap: 2.8rem;
   align-items: center;
   margin: 0;
   padding: 0;
@@ -331,52 +321,39 @@ section {
 }
 
 .nav-menu li a {
-  color: var(--text-dark);
+  color: #5a5a5a;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 1.2px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  transition: all 0.35s ease;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   text-transform: uppercase;
   display: block;
+  font-family: 'Inter', sans-serif;
 }
 
 .nav-menu li a::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -12px;
-  transform: translateY(-50%) scale(0);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--sage-green), var(--dusty-rose));
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
 }
 
 .nav-menu li a:hover {
-  color: var(--olive-green);
-  transform: translateY(-2px);
-}
-
-.nav-menu li a:hover::before {
-  transform: translateY(-50%) scale(1);
+  color: #2c3e2c;
+  transform: none;
 }
 
 .nav-menu li a::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--sage-green), var(--dusty-rose));
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(139, 157, 131, 0.3);
+  height: 1.5px;
+  background: #c9a88a;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1px;
+  box-shadow: none;
 }
 
 .nav-menu li a:hover::after {
@@ -384,8 +361,8 @@ section {
 }
 
 .nav-menu li a.active {
-  color: var(--olive-green);
-  font-weight: 700;
+  color: #2c3e2c;
+  font-weight: 600;
 }
 
 .nav-menu li a.active::after {
@@ -393,23 +370,19 @@ section {
 }
 
 .nav-menu li a.active::before {
-  transform: translateY(-50%) scale(1);
+  display: none;
 }
 
 .nav-menu li:not(:last-child)::after {
   content: "";
   position: absolute;
-  right: -1.5rem;
+  right: -1.4rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 1px;
-  height: 16px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(139, 157, 131, 0.3),
-    transparent
-  );
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(201, 168, 138, 0.35);
 }
 
 /* Hero Section */
@@ -805,20 +778,8 @@ section {
 
 /* Section Title */
 .section-title {
-  font-family: "Allura", cursive;
-  font-size: 4.5rem;
-  background: linear-gradient(
-    135deg,
-    var(--sage-green) 0%,
-    var(--light-sage) 40%,
-    var(--dusty-rose) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   text-align: center;
-  margin-bottom: 4rem;
-  animation: fadeIn 1s ease;
+  margin-bottom: 2rem;
   font-weight: 400;
 }
 
@@ -1616,10 +1577,14 @@ section {
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0.9rem 0.7rem;
+    padding: 0.8rem 1.2rem;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .navbar.scrolled {
+    padding: 0.5rem 1.2rem;
   }
 
   .menu-toggle {
@@ -1628,7 +1593,7 @@ section {
 
   .nav-logo {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     padding: 0;
   }
 
@@ -1640,7 +1605,7 @@ section {
     padding: 0;
     box-shadow: none;
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
     border-top: none;
     flex-wrap: nowrap;
     justify-content: center;
@@ -1667,7 +1632,7 @@ section {
     width: auto;
     font-size: 0.5rem;
     white-space: nowrap;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
   }
 
   .nav-menu li:not(:last-child)::after {
@@ -1696,10 +1661,6 @@ section {
 
   .countdown-value {
     font-size: 2rem;
-  }
-
-  .section-title {
-    font-size: 3rem;
   }
 
   .story-content,
@@ -1744,10 +1705,6 @@ section {
 
   .countdown-value {
     font-size: 1.8rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
   }
 
   .gallery-grid {

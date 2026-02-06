@@ -1,62 +1,111 @@
 import React, { useState, useEffect } from 'react';
 import './Hero.css';
-import logoTrans from '../../img/translogo.png';
+import Countdown from './Countdown';
 
-const Hero = ({ bride, groom, date, backgroundImage, weddingDateTime }) => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
+const Hero = ({ bride, groom, date, backgroundImage, targetDate }) => {
+  const fullMessage = "Two hearts, one forever — we can't wait to celebrate with you.";
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
+  const [pauseRef, setPauseRef] = useState(false);
 
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const difference = new Date(weddingDateTime) - new Date();
-      
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        });
+    if (pauseRef) {
+      const pause = setTimeout(() => {
+        setPauseRef(false);
+        setIsDeleting(true);
+      }, 2000);
+      return () => clearTimeout(pause);
+    }
+
+    if (isDeleting) {
+      if (charIndex > 0) {
+        const timeout = setTimeout(() => {
+          setDisplayedText(prev => prev.slice(0, -1));
+          setCharIndex(prev => prev - 1);
+        }, 25);
+        return () => clearTimeout(timeout);
+      } else {
+        setIsDeleting(false);
       }
-    };
-
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
-
-    return () => clearInterval(timer);
-  }, [weddingDateTime]);
+    } else {
+      if (charIndex < fullMessage.length) {
+        const timeout = setTimeout(() => {
+          setDisplayedText(prev => prev + fullMessage[charIndex]);
+          setCharIndex(prev => prev + 1);
+        }, 50);
+        return () => clearTimeout(timeout);
+      } else {
+        setPauseRef(true);
+      }
+    }
+  }, [charIndex, isDeleting, pauseRef]);
 
   return (
-    <section className="hero" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="hero-overlay">
-        <div className="hero-glass-card">
-          <p className="hero-subtitle">We are getting married!</p>
-          <div className="hero-logo-container">
-            <img src={logoTrans} alt="Wedding Logo" className="hero-logo" />
+    <section className="hero">
+      {/* ── Cinematic hero image ── */}
+      <div className="hero-background" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="hero-background-overlay">
+          {/* Decorative frame corners */}
+          <div className="hero-frame">
+            <span className="hero-frame-corner hero-frame-tl"></span>
+            <span className="hero-frame-corner hero-frame-tr"></span>
+            <span className="hero-frame-corner hero-frame-bl"></span>
+            <span className="hero-frame-corner hero-frame-br"></span>
           </div>
-          <p className="hero-date">{date}</p>
-          
-          <div className="hero-countdown">
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.days).padStart(2, '0')}</span>
-              <span className="countdown-label">days</span>
+
+          <div className="hero-overlay-content">
+            <span className="hero-overlay-label">SAVE THE DATE</span>
+            <h2 className="hero-overlay-names">
+              <span className="hero-overlay-name">{groom}</span>
+              <span className="hero-overlay-amp">&</span>
+              <span className="hero-overlay-name">{bride}</span>
+            </h2>
+            <div className="hero-overlay-divider"></div>
+            <p className="hero-invited-text">You are invited!</p>
+            <p className="hero-reserved-text">We have reserved a seat for you</p>
+            <div className="hero-typewriter">
+              <p className="hero-typewriter-text">
+                {displayedText}
+                <span className="hero-typewriter-cursor">|</span>
+              </p>
             </div>
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
-              <span className="countdown-label">hours</span>
+            <div className="hero-date-highlight">
+              <span className="hero-date-highlight-line"></span>
+              <p className="hero-date">{date}</p>
+              <span className="hero-date-highlight-line"></span>
             </div>
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
-              <span className="countdown-label">minutes</span>
-            </div>
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
-              <span className="countdown-label">seconds</span>
-            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Invitation section ── */}
+      <div className="hero-invitation">
+        <div className="hero-invitation-inner">
+          <div className="hero-ornament">✦</div>
+          <p className="hero-together-text">Together with their families</p>
+          <div className="hero-divider">
+            <span className="hero-divider-line"></span>
+            <span className="hero-divider-icon">♥</span>
+            <span className="hero-divider-line"></span>
+          </div>
+
+          <h1 className="hero-couple-names">
+            <span className="hero-name">{groom}</span>
+            <span className="hero-ampersand">&</span>
+            <span className="hero-name">{bride}</span>
+          </h1>
+
+          <p className="hero-getting-married">REQUEST THE PLEASURE OF YOUR COMPANY</p>
+
+          <div className="hero-wedding-date">
+            <span className="hero-wedding-date-line"></span>
+            <span className="hero-wedding-date-text">{date}</span>
+            <span className="hero-wedding-date-line"></span>
+          </div>
+
+          <div className="hero-countdown-wrapper">
+            <Countdown targetDate={targetDate} />
           </div>
         </div>
       </div>

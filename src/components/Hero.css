@@ -1,225 +1,495 @@
+/* ═══════════════════════════════════════════
+   HERO SECTION — Editorial Wedding Design
+   ═══════════════════════════════════════════ */
+
 .hero {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+/* ── Cinematic background image ── */
+.hero-background {
+  height: 80vh;
+  min-height: 600px;
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-position: center 30%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
 }
 
-.hero::before {
-  content: "";
+.hero-background-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(44, 62, 44, 0.4) 0%,
-    rgba(139, 157, 131, 0.5) 50%,
-    rgba(212, 165, 165, 0.3) 100%
-  );
-  animation: gradientShift 20s ease infinite;
-}
-
-@keyframes gradientShift {
-  0%,
-  100% {
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.hero-overlay {
-  position: relative;
+  inset: 0;
   z-index: 2;
-  text-align: center;
-  padding: 6rem 2rem 4rem;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.hero-glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 4rem 3rem 3.5rem;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-  max-width: 900px;
-  margin: 0 auto;
-  animation: fadeInScale 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-glass-card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 70%
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.45) 40%,
+    rgba(0, 0, 0, 0.7) 100%
   );
-  animation: rotate 20s linear infinite;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ── Decorative frame corners ── */
+.hero-frame {
+  position: absolute;
+  inset: 2rem;
+  z-index: 3;
+  pointer-events: none;
 }
 
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+.hero-frame-corner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-color: rgba(255, 255, 255, 0.45);
+  border-style: solid;
+  opacity: 0;
+  animation: frameFadeIn 1.2s ease 1s forwards;
 }
 
-.hero-subtitle {
-  font-family: "Inter", sans-serif;
-  font-size: 1.1rem !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  letter-spacing: 10px !important;
+.hero-frame-tl {
+  top: 0; left: 0;
+  border-width: 1px 0 0 1px;
+}
+.hero-frame-tr {
+  top: 0; right: 0;
+  border-width: 1px 1px 0 0;
+}
+.hero-frame-bl {
+  bottom: 0; left: 0;
+  border-width: 0 0 1px 1px;
+}
+.hero-frame-br {
+  bottom: 0; right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+@keyframes frameFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Overlay content ── */
+.hero-overlay-content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0 2rem;
+  max-width: 700px;
+}
+
+/* "SAVE THE DATE" label */
+.hero-overlay-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 8px;
+  font-weight: 500;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.6),
-    0 4px 16px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(0, 0, 0, 0.3) !important;
-  position: relative;
-  z-index: 1;
+  animation: heroFadeInUp 1s ease 0.2s forwards;
 }
 
-.hero-logo-container {
-  margin: 2rem 0 1.5rem;
+/* ── Couple names on overlay ── */
+.hero-overlay-names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0 0 1.5rem 0;
   opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
-  padding: 1rem 0;
+  animation: heroFadeInUp 1s ease 0.4s forwards;
+}
+
+.hero-overlay-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 24px rgba(0, 0, 0, 0.4);
+  line-height: 1;
+}
+
+.hero-overlay-amp {
+  font-family: 'Allura', serif;
+  font-size: 4.5rem;
+  color: #d4b896;
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
+  line-height: 1;
   position: relative;
-  z-index: 1;
+  top: 2px;
 }
 
-.hero-logo {
-  max-width: 450px;
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.25));
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+/* Divider line under names */
+.hero-overlay-divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease 0.6s forwards;
 }
 
-.hero-logo:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.3));
+/* "You are invited!" */
+.hero-invited-text {
+  font-family: 'Allura', cursive;
+  font-size: 2.4rem;
+  color: #d4b896;
+  font-weight: 400;
+  margin: 0 0 0.3rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease 0.7s forwards;
+}
+
+/* "We have reserved a seat for you" */
+.hero-reserved-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0 0 1.8rem 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease 0.8s forwards;
+}
+
+/* ── Typewriter message ── */
+.hero-typewriter {
+  margin-bottom: 2rem;
+  min-height: 2rem;
+  opacity: 0;
+  animation: heroFadeIn 0.5s ease 1s forwards;
+}
+
+.hero-typewriter-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  line-height: 1.6;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hero-typewriter-cursor {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  color: #c9a88a;
+  font-weight: 300;
+  animation: cursorBlink 0.8s steps(1) infinite;
+  margin-left: 2px;
+}
+
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Date highlight ── */
+.hero-date-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  opacity: 0;
+  animation: heroFadeInUp 1s ease 1.2s forwards;
+}
+
+.hero-date-highlight-line {
+  width: 50px;
+  height: 1px;
+  background: #d4b896;
+  box-shadow: 0 0 6px rgba(201, 168, 138, 0.4);
 }
 
 .hero-date {
-  font-family: "Playfair Display", serif;
-  font-size: 2.5rem !important;
-  color: #ffffff !important;
-  font-style: italic;
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-  opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 1s forwards;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.6),
-    0 4px 16px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(0, 0, 0, 0.3) !important;
-  letter-spacing: 5px !important;
-  font-weight: 600 !important;
-  position: relative;
-  z-index: 1;
-}
-
-/* Hero Countdown Styles */
-.hero-countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  flex-wrap: nowrap;
-  margin-top: 3rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-countdown .countdown-item {
-  background: transparent;
-  backdrop-filter: none;
-  border: none;
-  padding: 0;
-  border-radius: 0;
-  min-width: auto;
-  flex: 0;
-  text-align: center;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: none;
-  position: relative;
-  overflow: visible;
-}
-
-.hero-countdown .countdown-item:hover {
-  transform: translateY(-5px);
-}
-
-.hero-countdown .countdown-number {
-  display: block;
-  font-family: "Playfair Display", serif;
-  font-size: 4.5rem;
-  font-weight: 300;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
   color: #ffffff;
-  line-height: 1;
-  margin-bottom: 0.8rem;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-  letter-spacing: -2px;
+  margin: 0;
+  letter-spacing: 6px;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  padding: 0.8rem 2.2rem;
+  border: 1.5px solid rgba(212, 184, 150, 0.7);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.hero-countdown .countdown-label {
-  display: block;
-  font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.85);
+/* ═══════════════════════════════════════════
+   INVITATION SECTION
+   ═══════════════════════════════════════════ */
+.hero-invitation {
+  flex: 1;
+  background: linear-gradient(180deg, #faf8f5 0%, #f5f0eb 50%, #faf8f5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow */
+.hero-invitation::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(201, 168, 138, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-invitation-inner {
+  text-align: center;
+  max-width: 680px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Ornament */
+.hero-ornament {
+  font-size: 0.8rem;
+  color: #c9a88a;
+  letter-spacing: 8px;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+
+/* "Together with their families" */
+.hero-together-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #b09a82;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 0 0 1.5rem 0;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+/* Divider */
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+
+.hero-divider-line {
+  width: 70px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a88a, transparent);
+}
+
+.hero-divider-icon {
+  font-size: 0.55rem;
+  color: #c9a88a;
+}
+
+/* ── Couple names — stacked layout ── */
+.hero-couple-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0 0 1.5rem 0;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.55s forwards;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem;
+  color: #2c3e2c;
+  font-weight: 400;
+  letter-spacing: 14px;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  line-height: 1.1;
+}
+
+.hero-ampersand {
+  font-family: 'Allura', serif;
+  font-size: 4rem;
+  color: #c9a88a;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0.2rem 0;
+}
+
+/* "Request the pleasure…" */
+.hero-getting-married {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: #9a9a9a;
+  font-weight: 400;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin: 0 0 2.5rem 0;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
+}
+
+/* ── Wedding date highlight ── */
+.hero-wedding-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.85s forwards;
+}
+
+.hero-wedding-date-line {
+  width: 50px;
+  height: 1px;
+  background: #c9a88a;
+}
+
+.hero-wedding-date-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: #2c3e2c;
+  letter-spacing: 5px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* ── Countdown wrapper ── */
+.hero-countdown-wrapper {
+  padding-top: 2rem;
+  position: relative;
+  opacity: 0;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 1s forwards;
+}
+
+.hero-countdown-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 1px;
+  background: #c9a88a;
+}
+
+/* ── Countdown overrides (flat, inline) ── */
+.hero-invitation .countdown,
+.hero-countdown-wrapper .countdown {
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+
+.hero-invitation .countdown-item,
+.hero-countdown-wrapper .countdown-item {
+  padding: 0 1.6rem;
+  min-width: auto;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+.hero-invitation .countdown-item::before,
+.hero-countdown-wrapper .countdown-item::before,
+.hero-invitation .countdown-item::after,
+.hero-countdown-wrapper .countdown-item::after {
+  display: none;
+}
+
+.hero-invitation .countdown-item:not(:last-child)::after,
+.hero-countdown-wrapper .countdown-item:not(:last-child)::after {
+  display: block;
+  content: '·';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-60%);
+  font-size: 1.4rem;
+  color: #c9a88a;
   font-weight: 400;
 }
 
-@keyframes fadeInUp {
+.hero-invitation .countdown-item:hover,
+.hero-countdown-wrapper .countdown-item:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.hero-invitation .countdown-number,
+.hero-countdown-wrapper .countdown-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e2c;
+  margin-bottom: 0.4rem;
+  -webkit-text-fill-color: #2c3e2c;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+.hero-invitation .countdown-label,
+.hero-countdown-wrapper .countdown-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2.5px;
+  color: #b09a82;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════ */
+@keyframes heroFadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -227,96 +497,271 @@
   }
 }
 
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Tablet
+   ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero-glass-card {
-    padding: 3rem 1.5rem 2.5rem;
-    border-radius: 30px;
+  .hero {
+    margin-top: 64px;
   }
 
-  .hero-subtitle {
-    font-size: 1.2rem !important;
-    letter-spacing: 7px !important;
-    font-weight: 700 !important;
-    margin-bottom: 2rem;
-    margin-top: 0.5rem;
+  .hero-background {
+    height: 65vh;
+    min-height: 480px;
   }
 
-  .hero-logo {
-    max-width: 300px;
+  .hero-frame {
+    inset: 1.2rem;
+  }
+
+  .hero-frame-corner {
+    width: 35px;
+    height: 35px;
+  }
+
+  .hero-overlay-name {
+    font-size: 3.2rem;
+    letter-spacing: 5px;
+  }
+
+  .hero-overlay-amp {
+    font-size: 3rem;
+  }
+
+  .hero-overlay-label {
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+  }
+
+  .hero-typewriter-text {
+    font-size: 0.95rem;
   }
 
   .hero-date {
-    font-size: 1.4rem !important;
-    letter-spacing: 2px !important;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    padding: 0.5rem 1.4rem;
   }
 
-  .hero-countdown {
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    flex-wrap: nowrap;
+  .hero-date-highlight-line {
+    width: 30px;
   }
 
-  .hero-countdown .countdown-item:hover {
-    transform: none;
+  .hero-invitation {
+    padding: 3.5rem 2rem 3rem;
   }
 
-  .hero-countdown .countdown-number {
-    font-size: 2.2rem;
+  .hero-name {
+    font-size: 3rem;
+    letter-spacing: 8px;
   }
 
-  .hero-countdown .countdown-label {
+  .hero-ampersand {
+    font-size: 2.8rem;
+  }
+
+  .hero-together-text {
+    font-size: 0.9rem;
+  }
+
+  .hero-getting-married {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+  }
+
+  .hero-wedding-date-text {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  .hero-wedding-date-line {
+    width: 35px;
+  }
+
+  .hero-divider-line {
+    width: 45px;
+  }
+
+  .hero-invitation .countdown-item,
+  .hero-countdown-wrapper .countdown-item {
+    padding: 0 1rem;
+  }
+
+  .hero-invitation .countdown-item:not(:last-child)::after,
+  .hero-countdown-wrapper .countdown-item:not(:last-child)::after {
+    font-size: 1.1rem;
+    right: -3px;
+  }
+
+  .hero-invitation .countdown-number,
+  .hero-countdown-wrapper .countdown-number {
+    font-size: 1.6rem;
+  }
+
+  .hero-invitation .countdown-label,
+  .hero-countdown-wrapper .countdown-label {
     font-size: 0.55rem;
     letter-spacing: 1.5px;
   }
 }
 
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Mobile
+   ═══════════════════════════════════════════ */
 @media (max-width: 480px) {
-  .hero-glass-card {
-    padding: 2.5rem 1.2rem 2rem;
-    border-radius: 25px;
+  .hero {
+    margin-top: 75px;
   }
 
-  .hero-subtitle {
-    font-size: 1rem !important;
-    letter-spacing: 6px !important;
-    font-weight: 700 !important;
-    margin-bottom: 1.5rem;
-    margin-top: 0.5rem;
+  .hero-background {
+    height: 60vh;
+    min-height: 400px;
   }
 
-  .hero-logo {
-    max-width: 240px;
+  .hero-frame {
+    inset: 0.8rem;
+  }
+
+  .hero-frame-corner {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero-overlay-content {
+    padding: 0 1.2rem;
+  }
+
+  .hero-overlay-label {
+    font-size: 0.55rem;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-overlay-names {
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-overlay-name {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+  }
+
+  .hero-overlay-amp {
+    font-size: 2rem;
+  }
+
+  .hero-overlay-divider {
+    width: 40px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-typewriter {
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-typewriter-text {
+    font-size: 0.82rem;
+    line-height: 1.5;
   }
 
   .hero-date {
-    font-size: 1.2rem !important;
-    letter-spacing: 2px !important;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    padding: 0.4rem 1rem;
   }
 
-  .hero-countdown {
-    gap: 0.5rem;
-    margin-top: 1.5rem;
+  .hero-date-highlight-line {
+    width: 20px;
+  }
+
+  .hero-date-highlight {
+    gap: 0.8rem;
+  }
+
+  .hero-invitation {
+    padding: 2.5rem 1.2rem 2rem;
+  }
+
+  .hero-ornament {
+    font-size: 0.65rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-together-text {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-divider {
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-divider-line {
+    width: 28px;
+  }
+
+  .hero-name {
+    font-size: 2.2rem;
+    letter-spacing: 6px;
+  }
+
+  .hero-ampersand {
+    font-size: 2rem;
+    margin: 0.1rem 0;
+  }
+
+  .hero-getting-married {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-wedding-date {
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-wedding-date-text {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-wedding-date-line {
+    width: 20px;
+  }
+
+  .hero-countdown-wrapper {
     padding-top: 1.5rem;
+  }
+
+  .hero-invitation .countdown,
+  .hero-countdown-wrapper .countdown {
+    gap: 0;
     flex-wrap: nowrap;
   }
 
-  .hero-countdown .countdown-item {
-    flex: 1;
-    min-width: 0;
+  .hero-invitation .countdown-item,
+  .hero-countdown-wrapper .countdown-item {
+    padding: 0 0.7rem;
   }
 
-  .hero-countdown .countdown-item:hover {
-    transform: none;
+  .hero-invitation .countdown-item:not(:last-child)::after,
+  .hero-countdown-wrapper .countdown-item:not(:last-child)::after {
+    font-size: 0.9rem;
+    right: -2px;
   }
 
-  .hero-countdown .countdown-number {
-    font-size: 1.8rem;
-    margin-bottom: 0.4rem;
+  .hero-invitation .countdown-number,
+  .hero-countdown-wrapper .countdown-number {
+    font-size: 1.2rem;
   }
 
-  .hero-countdown .countdown-label {
-    font-size: 0.5rem;
+  .hero-invitation .countdown-label,
+  .hero-countdown-wrapper .countdown-label {
+    font-size: 0.45rem;
     letter-spacing: 1px;
   }
 }
