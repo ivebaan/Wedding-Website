@@ -85,7 +85,7 @@
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   background: #f0ece7;
 }
 
@@ -115,7 +115,7 @@
   object-fit: cover;
   opacity: 0;
   transition: opacity 1.2s ease-in-out;
-  transform: scale(1);
+  will-change: opacity;
 }
 
 .image-slideshow img.active {
@@ -136,8 +136,7 @@
   display: flex;
   gap: 8px;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.35);
   padding: 6px 14px;
   border-radius: 20px;
 }
