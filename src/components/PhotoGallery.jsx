@@ -109,28 +109,44 @@ const PhotoGallery = ({ title, photos }) => {
 
   return (
     <section className="photo-gallery" id="gallery">
-      <h2 className="section-title">{title}</h2>
-      <p className="section-subtitle">A collection of moments that tell our love story—captured in joy, laughter, and forever.</p>
+      <div className="section-header">
+        <span className="section-ornament">✦</span>
+        <h2 className="section-title">{title}</h2>
+        <div className="section-divider">
+          <span className="section-divider-line"></span>
+          <span className="section-divider-icon">♥</span>
+          <span className="section-divider-line"></span>
+        </div>
+        <p className="section-subtitle">A collection of moments that tell our love story</p>
+      </div>
 
       {photos && photos.length > 0 ? (
-        <div
-          className={`gallery-scroll-container ${isDragging ? "dragging" : ""}`}
-          ref={scrollRef}
-        >
-          <div className="gallery-track">
-            {/* Duplicate photos for seamless loop */}
-            {photos.concat(photos).map((photo, index) => (
-              <div key={index} className="gallery-slide">
-                <div className="gallery-image-wrapper">
-                  <img
-                    src={photo.url}
-                    alt={photo.caption || `Photo ${index + 1}`}
-                    draggable="false"
-                  />
+        <div className="gallery-outer">
+          <div
+            className={`gallery-scroll-container ${isDragging ? "dragging" : ""}`}
+            ref={scrollRef}
+          >
+            <div className="gallery-track">
+              {/* Duplicate photos for seamless loop */}
+              {photos.concat(photos).map((photo, index) => (
+                <div key={index} className="gallery-slide">
+                  <div className="gallery-image-wrapper">
+                    <img
+                      src={photo.url}
+                      alt={photo.caption || `Photo ${index + 1}`}
+                      draggable="false"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          <p className="gallery-hint">
+            <span className="gallery-hint-arrows">← →</span>
+            Drag to explore
+          </p>
         </div>
       ) : (
         <p style={{ textAlign: 'center', padding: '2rem' }}>No photos available</p>
@@ -140,4 +156,4 @@ const PhotoGallery = ({ title, photos }) => {
   );
 };
 
-export default PhotoGallery;
+export default React.memo(PhotoGallery);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import './FAQ.css';
 
 const FAQ = ({ title, subtitle, questions }) => {
@@ -10,23 +10,38 @@ const FAQ = ({ title, subtitle, questions }) => {
 
   return (
     <section className="faq" id="faq">
-      {subtitle && <p className="faq-subtitle">{subtitle}</p>}
-      <h2 className="section-title">{title}</h2>
+      <div className="section-header">
+        <span className="section-ornament">✦</span>
+        {subtitle && <p className="faq-subtitle">{subtitle}</p>}
+        <h2 className="section-title">{title}</h2>
+        <div className="section-divider">
+          <span className="section-divider-line"></span>
+          <span className="section-divider-icon">♥</span>
+          <span className="section-divider-line"></span>
+        </div>
+      </div>
       <div className="faq-container">
         {questions.map((item, index) => (
-          <div key={index} className="faq-item">
+          <div
+            key={index}
+            className={`faq-item ${activeIndex === index ? 'faq-item--open' : ''}`}
+          >
             <button
               className={`faq-question ${activeIndex === index ? 'active' : ''}`}
               onClick={() => toggleQuestion(index)}
             >
-              {item.question}
-              <span className="faq-icon">{activeIndex === index ? '▲' : '▼'}</span>
+              <span className="faq-question-number">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className="faq-question-text">{item.question}</span>
+              <span className="faq-icon">
+                <span className="faq-icon-bar faq-icon-h"></span>
+                <span className="faq-icon-bar faq-icon-v"></span>
+              </span>
             </button>
-            {activeIndex === index && (
-              <div className="faq-answer">
-                <p>{item.answer}</p>
-              </div>
-            )}
+            <div className="faq-answer">
+              <p>{item.answer}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -34,4 +49,4 @@ const FAQ = ({ title, subtitle, questions }) => {
   );
 };
 
-export default FAQ;
+export default memo(FAQ);

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { memo } from "react";
 import "./DressCode.css";
 
 const DressCode = ({ title, subtitle, description, colors, images }) => {
   return (
     <section className="dress-code" id="dress-code">
-      <h1 className="section-title">{title}</h1>
+      <div className="section-header">
+        <span className="section-ornament">✦</span>
+        <h1 className="section-title">{title}</h1>
+        <div className="section-divider">
+          <span className="section-divider-line"></span>
+          <span className="section-divider-icon">♥</span>
+          <span className="section-divider-line"></span>
+        </div>
+      </div>
       <h3 className="dress-code-subtitle">{subtitle}</h3>
       {description && <p className="dress-code-description">{description}</p>}
 
@@ -25,7 +33,7 @@ const DressCode = ({ title, subtitle, description, colors, images }) => {
         <div className="dress-code-images">
           {images.map((image, index) => (
             <div key={index} className="dress-code-image">
-              <img src={image} alt={`Dress Code ${index + 1}`} />
+              <img src={image} alt={`Dress Code ${index + 1}`} loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
@@ -60,4 +68,4 @@ const DressCode = ({ title, subtitle, description, colors, images }) => {
   );
 };
 
-export default DressCode;
+export default memo(DressCode);

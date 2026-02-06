@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import './OurStory.css';
 
 const OurStory = ({ title, story, image }) => {
@@ -18,7 +18,15 @@ const OurStory = ({ title, story, image }) => {
 
   return (
     <section className="our-story" id="our-story">
-      <h2 className="section-title">{title}</h2>
+      <div className="section-header">
+        <span className="section-ornament">✦</span>
+        <h2 className="section-title">{title}</h2>
+        <div className="section-divider">
+          <span className="section-divider-line"></span>
+          <span className="section-divider-icon">♥</span>
+          <span className="section-divider-line"></span>
+        </div>
+      </div>
       <div className="story-content">
         {images && images.length > 0 && (
           <div className="story-image">
@@ -29,6 +37,8 @@ const OurStory = ({ title, story, image }) => {
                   src={img}
                   alt={`Our Story ${index + 1}`}
                   className={index === currentImageIndex ? 'active' : ''}
+                  loading="lazy"
+                  decoding="async"
                 />
               ))}
             </div>
@@ -54,4 +64,4 @@ const OurStory = ({ title, story, image }) => {
   );
 };
 
-export default OurStory;
+export default memo(OurStory);
