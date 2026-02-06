@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Hero.css';
 import Countdown from './Countdown';
-import logo from '../img/translogo.png';
+import logo from '../../img/translogo.png';
 
 const Hero = ({ bride, groom, date, backgroundImage, targetDate }) => {
   const fullMessage = "Two hearts, one forever — we can't wait to celebrate with you.";
