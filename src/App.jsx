@@ -55,6 +55,7 @@ import child11 from "../img/child11.jpeg";
 import child12 from "../img/child12.jpeg";
 import child13 from "../img/child13.jpeg";
 import child14 from "../img/child14.jpeg";
+import child15 from "../img/child15.jpeg";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -282,7 +283,7 @@ function App() {
     },
 
     rsvp: {
-      deadline: "February 10, 2026",
+      deadline: "February 11, 2026",
     },
   }), []);
 
@@ -393,7 +394,7 @@ function App() {
             <OurStory
               title="Our Story"
               story={weddingData.story}
-              image={[child1, child2, child3, child4, child5, child6, child7, child8, child9, child10, child11, child12, child13, child14, main1, main2, wed1, wed2, wed3, wed4, wed5]}
+              image={[child6, child9, child10, child1, child3, child5, child4, child2, child7, child8, child15, child12, child11, child13, child14]}
             />
           </div>
         )}

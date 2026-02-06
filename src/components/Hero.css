@@ -13,8 +13,8 @@
 
 /* ── Cinematic background image ── */
 .hero-background {
-  height: 80vh;
-  min-height: 600px;
+  height: 100vh;
+  min-height: 700px;
   background-size: cover;
   background-position: center 30%;
   position: relative;
@@ -105,37 +105,23 @@
   animation: heroFadeInUp 1s ease 0.2s forwards;
 }
 
-/* ── Couple names on overlay ── */
-.hero-overlay-names {
+/* ── Logo on overlay ── */
+.hero-overlay-logo {
+  margin: 0 0 0.8rem 0;
+  opacity: 0;
+  animation: heroFadeInUp 1s ease 0.4s forwards;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
-  margin: 0 0 1.5rem 0;
-  opacity: 0;
-  animation: heroFadeInUp 1s ease 0.4s forwards;
 }
 
-.hero-overlay-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 5rem;
-  color: #ffffff;
-  font-weight: 400;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 24px rgba(0, 0, 0, 0.4);
-  line-height: 1;
-}
-
-.hero-overlay-amp {
-  font-family: 'Allura', serif;
-  font-size: 4.5rem;
-  color: #d4b896;
-  font-weight: 400;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
-  line-height: 1;
-  position: relative;
-  top: 2px;
+.hero-overlay-logo-img {
+  width: 340px;
+  max-width: 80vw;
+  height: auto;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5))
+         drop-shadow(0 4px 28px rgba(0, 0, 0, 0.3));
+  object-fit: contain;
 }
 
 /* Divider line under names */
@@ -532,8 +518,8 @@
   }
 
   .hero-background {
-    height: 65vh;
-    min-height: 480px;
+    height: 100vh;
+    min-height: 550px;
   }
 
   .hero-frame {
@@ -545,13 +531,28 @@
     height: 35px;
   }
 
-  .hero-overlay-name {
-    font-size: 3.2rem;
-    letter-spacing: 5px;
+  .hero-overlay-logo-img {
+    width: 260px;
   }
 
-  .hero-overlay-amp {
-    font-size: 3rem;
+  .hero-overlay-logo {
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-overlay-divider {
+    margin-bottom: 1rem;
+  }
+
+  .hero-invited-text {
+    font-size: 2rem;
+  }
+
+  .hero-reserved-text {
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-typewriter {
+    margin-bottom: 1.2rem;
   }
 
   .hero-overlay-label {
@@ -648,8 +649,8 @@
   }
 
   .hero-background {
-    height: 60vh;
-    min-height: 400px;
+    height: 100vh;
+    min-height: 480px;
   }
 
   .hero-frame {
@@ -671,32 +672,44 @@
     margin-bottom: 1rem;
   }
 
-  .hero-overlay-names {
-    gap: 0.4rem;
-    margin-bottom: 1rem;
+  .hero-overlay-logo {
+    margin-bottom: 0.5rem;
   }
 
-  .hero-overlay-name {
-    font-size: 2.2rem;
-    letter-spacing: 4px;
-  }
-
-  .hero-overlay-amp {
-    font-size: 2rem;
+  .hero-overlay-logo-img {
+    width: 180px;
   }
 
   .hero-overlay-divider {
-    width: 40px;
-    margin-bottom: 1rem;
+    width: 35px;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-overlay-label {
+    font-size: 0.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-invited-text {
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-reserved-text {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.8rem;
   }
 
   .hero-typewriter {
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
+    min-height: 1.6rem;
   }
 
   .hero-typewriter-text {
-    font-size: 0.82rem;
-    line-height: 1.5;
+    font-size: 0.78rem;
+    line-height: 1.4;
   }
 
   .hero-date-day {
