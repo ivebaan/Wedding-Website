@@ -213,36 +213,62 @@
   to { opacity: 1; }
 }
 
-/* ── Date highlight ── */
-.hero-date-highlight {
+/* ── Date block ── */
+.hero-date-block {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 1.8rem;
   opacity: 0;
   animation: heroFadeInUp 1s ease 1.2s forwards;
 }
 
-.hero-date-highlight-line {
+.hero-date-ornament-line {
   width: 50px;
   height: 1px;
-  background: #d4b896;
-  box-shadow: 0 0 6px rgba(201, 168, 138, 0.4);
+  background: linear-gradient(90deg, transparent, rgba(212, 184, 150, 0.7));
 }
 
-.hero-date {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: #ffffff;
-  margin: 0;
+.hero-date-block .hero-date-ornament-line:last-child {
+  background: linear-gradient(90deg, rgba(212, 184, 150, 0.7), transparent);
+}
+
+.hero-date-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.hero-date-month {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
   letter-spacing: 6px;
-  font-weight: 600;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  padding: 0.8rem 2.2rem;
-  border: 1.5px solid rgba(212, 184, 150, 0.7);
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  font-weight: 400;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-date-day {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  color: #ffffff;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 4px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-date-year {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: #d4b896;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  font-weight: 500;
+  padding-top: 6px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 /* ═══════════════════════════════════════════
@@ -537,14 +563,22 @@
     font-size: 0.95rem;
   }
 
-  .hero-date {
-    font-size: 1.2rem;
-    letter-spacing: 3px;
-    padding: 0.5rem 1.4rem;
+  .hero-date-day {
+    font-size: 2.4rem;
   }
 
-  .hero-date-highlight-line {
+  .hero-date-month,
+  .hero-date-year {
+    font-size: 0.58rem;
+    letter-spacing: 5px;
+  }
+
+  .hero-date-ornament-line {
     width: 30px;
+  }
+
+  .hero-date-block {
+    gap: 1.2rem;
   }
 
   .hero-invitation {
@@ -665,17 +699,22 @@
     line-height: 1.5;
   }
 
-  .hero-date {
-    font-size: 0.95rem;
+  .hero-date-day {
+    font-size: 1.8rem;
     letter-spacing: 2px;
-    padding: 0.4rem 1rem;
   }
 
-  .hero-date-highlight-line {
-    width: 20px;
+  .hero-date-month,
+  .hero-date-year {
+    font-size: 0.55rem;
+    letter-spacing: 4px;
   }
 
-  .hero-date-highlight {
+  .hero-date-ornament-line {
+    width: 22px;
+  }
+
+  .hero-date-block {
     gap: 0.8rem;
   }
 

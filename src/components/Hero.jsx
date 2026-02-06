@@ -70,10 +70,14 @@ const Hero = ({ bride, groom, date, backgroundImage, targetDate }) => {
                 <span className="hero-typewriter-cursor">|</span>
               </p>
             </div>
-            <div className="hero-date-highlight">
-              <span className="hero-date-highlight-line"></span>
-              <p className="hero-date">{date}</p>
-              <span className="hero-date-highlight-line"></span>
+            <div className="hero-date-block">
+              <div className="hero-date-ornament-line"></div>
+              <div className="hero-date-stack">
+                <span className="hero-date-month">February</span>
+                <span className="hero-date-day">23</span>
+                <span className="hero-date-year">2026</span>
+              </div>
+              <div className="hero-date-ornament-line"></div>
             </div>
           </div>
         </div>
