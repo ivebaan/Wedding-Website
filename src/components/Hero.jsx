@@ -90,7 +90,7 @@ const Hero = ({ bride, groom, date, backgroundImage, targetDate }) => {
       <div className="hero-invitation">
         <div className="hero-invitation-inner">
           <div className="hero-ornament">✦</div>
-          <p className="hero-together-text">Together with their families</p>
+          <p className="hero-together-text">Together with their families & friends</p>
           <div className="hero-divider">
             <span className="hero-divider-line"></span>
             <span className="hero-divider-icon">♥</span>
