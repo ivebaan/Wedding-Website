@@ -164,25 +164,13 @@
   flex: 1;
   min-width: 280px;
   max-width: 420px;
-  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
-.dress-code-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  border: 1px solid rgba(201, 168, 138, 0.1);
-  pointer-events: none;
-}
-
 .dress-code-image:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
 }
 
 .dress-code-image img {

@@ -278,7 +278,7 @@ function App() {
 
     contact: {
       email: "jestinandnormae@gmail.com",
-      phone: "+63 912 345 6789",
+      phone: "+63 945 599 7401",
       messenger: "Maria Normae Flores",
     },
 
