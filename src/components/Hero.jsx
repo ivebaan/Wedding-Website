@@ -56,11 +56,13 @@ const Hero = ({ bride, groom, date, backgroundImage, targetDate }) => {
 
           <div className="hero-overlay-content">
             <span className="hero-overlay-label">SAVE THE DATE</span>
-            <h2 className="hero-overlay-names">
-              <span className="hero-overlay-name">{groom}</span>
-              <span className="hero-overlay-amp">&</span>
-              <span className="hero-overlay-name">{bride}</span>
-            </h2>
+            <div className="hero-overlay-logo">
+              <img
+                src="/img/translogo.png"
+                alt={`${groom} & ${bride}`}
+                className="hero-overlay-logo-img"
+              />
+            </div>
             <div className="hero-overlay-divider"></div>
             <p className="hero-invited-text">You are invited!</p>
             <p className="hero-reserved-text">We have reserved a seat for you</p>
