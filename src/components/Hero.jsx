@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Hero.css';
 import Countdown from './Countdown';
+import logo from '../../img/translogo.png';
 
 const Hero = ({ bride, groom, date, backgroundImage, targetDate }) => {
   const fullMessage = "Two hearts, one forever — we can't wait to celebrate with you.";
@@ -58,7 +59,7 @@ const Hero = ({ bride, groom, date, backgroundImage, targetDate }) => {
             <span className="hero-overlay-label">SAVE THE DATE</span>
             <div className="hero-overlay-logo">
               <img
-                src="/img/translogo.png"
+                src={logo}
                 alt={`${groom} & ${bride}`}
                 className="hero-overlay-logo-img"
               />
