@@ -54,12 +54,6 @@ const RSVP = ({ title, description, contactInfo, deadline }) => {
             )}
           </div>
         )}
-        
-        {deadline && (
-          <div className="rsvp-deadline">
-            <p><strong>RSVP Deadline:</strong> {deadline}</p>
-          </div>
-        )}
       </div>
     </section>
   );
