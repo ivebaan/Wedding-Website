@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import './RSVP.css';
 
-const RSVP = ({ title, description, contactInfo, deadline }) => {
+const RSVP = ({ title, description, contactInfo}) => {
   return (
     <section className="rsvp" id="rsvp">
       <div className="section-header">
